@@ -8,17 +8,16 @@
 
 public class CButton extends CNode {
 
-  PImage imgRefresh, imgHome;  // Declare variable "a" of type PImage
-  int iImgRefX, iImgRefY, iImgHomX, iImgHomY;  // Position of buttons
-  int iImgRefSize = 50;
-  int iImgHomSize = 50;
+  PImage imgRefresh, imgHome;
+  int iImgRefX, iImgRefY, iImgHomX, iImgHomY;
+  int iImgSize = 50;
   boolean bHomeOver = false;
   boolean bRefreshOver = false;
 
   void setup() {
-    size(640, 480); //size of the canvas
+    size(640, 480);
     background(0, 0, 0);
-    imgRefresh = loadImage("refresh.png");  // Load the image into the program
+    imgRefresh = loadImage("refresh.png"); 
     iImgRefX = 550;
     iImgRefY = 30;
     imgHome = loadImage("home.png");
@@ -31,26 +30,30 @@ public class CButton extends CNode {
 
     noStroke();
     if (this.bRefreshOver) {
-      ellipse(this.iImgRefX+this.iImgRefSize/2, this.iImgRefY+this.iImgRefSize/2, this.iImgRefSize, this.iImgRefSize);
+      ellipse(this.iImgRefX+this.iImgSize/2, this.iImgRefY+this.iImgSize/2, this.iImgSize+10, this.iImgSize+10);
       ellipseMode(CENTER);
+      text("Start over", this.iImgRefX+this.iImgSize/2, this.iImgRefY+1.5*this.iImgSize);
+      textAlign(CENTER);
     } 
     else if (this.bHomeOver) {
-      ellipse(this.iImgHomX+this.iImgHomSize/2, this.iImgHomY+this.iImgHomSize/2, this.iImgHomSize, this.iImgHomSize);
+      ellipse(this.iImgHomX+this.iImgSize/2, this.iImgHomY+this.iImgSize/2, this.iImgSize+10, this.iImgSize+10);
       ellipseMode(CENTER);
+      text("Home screen", this.iImgHomX+this.iImgSize/2, this.iImgHomY+1.5*this.iImgSize);
+      textAlign(CENTER);
     } 
     else {
       background(0);   //erases the circle over selection
     }
-    image(imgRefresh, iImgRefX, iImgRefY, iImgRefSize, iImgRefSize);
-    image(imgHome, iImgHomX, iImgHomY, iImgHomSize, iImgHomSize);
+    image(imgRefresh, iImgRefX, iImgRefY, iImgSize, iImgSize);
+    image(imgHome, iImgHomX, iImgHomY, iImgSize, iImgSize);
   }
 
   void update(int x, int y) {
-    if ( overRefresh(this.iImgRefX, this.iImgRefY, this.iImgRefSize, this.iImgRefSize) ) {
+    if ( overRefresh(this.iImgRefX, this.iImgRefY, this.iImgSize, this.iImgSize) ) {
       this.bRefreshOver = true;
       this.bHomeOver = false;
     } 
-    else if ( overHome(this.iImgHomX, this.iImgHomY, this.iImgHomSize, this.iImgHomSize) ) {
+    else if ( overHome(this.iImgHomX, this.iImgHomY, this.iImgSize, this.iImgSize) ) {
       this.bHomeOver = true;
       this.bRefreshOver = false;
     } 
@@ -61,10 +64,10 @@ public class CButton extends CNode {
 
   void mousePressed() {
     if (this.bRefreshOver) { 
-      g_pageController.GotoPageIdle(); // not sure if this is the right page, please check it
+      g_pageController.GotoPageCapture(); // not sure if this is the right page, please check it
     }
     if (this.bHomeOver) {
-      g_pageController.GotoPageCapture(); // not sure if this is the right page, please check it
+      g_pageController.GotoPageIdle(); // not sure if this is the right page, please check it
     }
   }
 
