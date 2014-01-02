@@ -16,7 +16,8 @@ public class CButton extends CNode implements IDrawable {
     fImgSize = 50;
     this.SetPosition(fPosX, fPosY);
   }
-  
+
+/* this exists also in CSprite */ 
   void Draw(){
     this.Update();
     

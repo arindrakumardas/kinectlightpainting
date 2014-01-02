@@ -8,21 +8,24 @@
  
 public class CSprite extends CNode implements IDrawable{
   PImage imgImage = null;
-  float fImgSize = 20; //what does this size stands for? or use width / height instead? -gigi
-  
+/*
+  float fImgSize = 50; //what does this size stands for? or use width / height instead? -gigi
+                        //size is for how big the image will be. 
+                        //I commented it out to see if it affects the start/refresh button. If not, we can delete it
+                        //in CButton it's important
+*/  
   CSprite(String strImagePath, float fPosX, float fPosY){
     imgImage = loadImage(strImagePath);
     this.SetPosition(fPosX,fPosY);
     
   }
-  
+ 
   void Draw(){
     this.Update();
     
     image(imgImage, this.GetPositionX(), this.GetPositionY());
 
   }
- 
   
   
 }

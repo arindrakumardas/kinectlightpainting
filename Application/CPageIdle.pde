@@ -29,12 +29,17 @@ class CPageIdle extends CScene{
     this.AddChild(canvas);
     
     //Create button
-    CButton startButton = new CButton("start.png", width - 100, 0); //change to another image
+    CButton startButton = new CButton("start.png", width - 100, 30); //change to another image
     startButton.Init();
-    this.AddChild(startButton);
+    this.AddChild(startButton); 
     
+    //Create label for start button
+    CLabel startLabel = new CLabel("Start capturing");      // I would like it on MouseOver -ire
+    startLabel.fFontSize = 8;
+    startLabel.SetPosition(width-75, 30+60);    //(-75,60) is the distance from position, for this I'm not writing 90 instead
+    this.AddChild(startLabel);
     
-    
+   
     return true;
-  } 
+  }
 }
