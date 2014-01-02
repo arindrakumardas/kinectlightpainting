@@ -8,13 +8,31 @@
 public class CButton extends CNode implements IDrawable {
 
   PImage imgNormalImage;
-  float fImgSize;
+  
+  PImage imgSelectedImage;
+  float fImgSize = 50;
   boolean bButtonOver = false;
 
+  //@depecated
   CButton (String strNormalImgPath, float fPosX, float fPosY) {
     imgNormalImage = loadImage(strNormalImgPath);
-    fImgSize = 50;
     this.SetPosition(fPosX, fPosY);
+  }
+  
+  CButton (String strBtnName, float fPosX, float fPosY, String strNormalImgPath, String strSelectedImgPath) {
+    imgNormalImage = loadImage(strNormalImgPath);
+    imgNormalImage.resize(int(fImgSize), int(fImgSize));
+    imgSelectedImage = loadImage(strSelectedImgPath);
+    imgSelectedImage.resize(int(fImgSize), int(fImgSize));
+    this.SetPosition(fPosX, fPosY);
+    
+    Button thisBtn = g_cp5Controller.addButton(strBtnName);
+    thisBtn.setPosition(fPosX,fPosY)
+//         .setSize(int(fImgSize),int(fImgSize))
+         .setImage(imgNormalImage, Controller.DEFAULT) // Controller.DEFAULT (background) Controller.OVER (foreground) Controller.ACTIVE (active)
+         .setImage(imgSelectedImage, Controller.OVER) // Controller.DEFAULT (background) Controller.OVER (foreground) Controller.ACTIVE (active)
+         .updateSize()
+         ;
   }
 
 /* this exists also in CSprite */ 

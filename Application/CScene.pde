@@ -34,4 +34,6 @@ class CScene extends CLayer{
     
   }
   
+  public void ControlEventHandler(ControlEvent theEvent){
+    }
 }

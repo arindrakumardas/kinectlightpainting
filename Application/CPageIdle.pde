@@ -29,9 +29,9 @@ class CPageIdle extends CScene{
     this.AddChild(canvas);
     
     //Create button
-    CButton startButton = new CButton("start.png", width - 100, 30); //change to another image
+    CButton startButton = new CButton("StartBtn", width - 100, 0, "start.png", "start-neg.png"); //change to another image
     startButton.Init();
-    this.AddChild(startButton); 
+//    this.AddChild(startButton);
     
     //Create label for start button
     CLabel startLabel = new CLabel("Start capturing");      // I would like it on MouseOver -ire
@@ -41,5 +41,15 @@ class CPageIdle extends CScene{
     
    
     return true;
+  }
+  
+    
+  public void ControlEventHandler(ControlEvent theEvent) {
+    CLogger.Debug("CPageIdle.ControlEvent(). Name:" + theEvent.getName() + " Value:" + theEvent.getValue());
+    CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
+    
+    if(theEvent.getName() == "StartBtn"){
+      g_pageController.GotoPageCapture();
+    }
   }
 }
