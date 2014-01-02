@@ -1,0 +1,65 @@
+/* --------------------------------------------------------------------------
+ * This code is better written for implementing buttons
+ * but I haven't figured out yet how to load the image in CSprite
+ * @author:  irene
+ * date:  2/1/2014 (m/d/y)
+ * ----------------------------------------------------------------------------
+ */
+
+
+public class CButton extends CSprite {
+
+  //use imgImage from CSprite
+//  PImage img;
+
+  //use pos/ size vars in CNode
+//  float fPosX = 0; 
+//  float fPosY = 0;
+//  float fImgSize;
+  boolean bButtonOver = false;
+
+  CButton(String strImagePath, float fPosX, float fPosY){ 
+    super(strImagePath, fPosX, fPosY);
+    fImgSize = 50;
+  }
+
+  void OnMouseOver() {
+    update(mouseX, mouseY);
+    noStroke();
+    if (this.bButtonOver) {
+      ellipse(this.GetPositionX()+this.fImgSize/2, this.GetPositionY()+this.fImgSize/2, this.fImgSize, this.fImgSize);
+      ellipseMode(CENTER);
+    } 
+    else {
+      background(0);   //erases the circle over selection
+    }
+    image(this.imgImage, this.GetPositionX(), this.GetPositionY(), this.fImgSize, this.fImgSize);
+  }
+
+  void update(int x, int y) {
+    if ( bOverButton(this.GetPositionX(), this.GetPositionY(), this.fImgSize, this.fImgSize) ) {
+      this.bButtonOver = true;
+    } 
+    else {
+      this.bButtonOver = false;
+    }
+  }
+
+  void mousePressed() {
+    if (this.bButtonOver) { 
+      g_pageController.GotoPageCapture(); // not sure if this is the right page, please check it
+      background(255, 34, 55);
+    }
+  }
+
+  boolean bOverButton(float x, float y, float width, float height) {
+    if (mouseX >= x && mouseX <= x+width && 
+      mouseY >= y && mouseY <= y+height) {
+      return true;
+    } 
+    else {
+      return false;
+    }
+  }
+}
+
