@@ -3,24 +3,32 @@
  * date:  2/1/2014 (m/d/y)
  * ----------------------------------------------------------------------------
  */
-PImage Img;
-float fImgSize;
 
-public class CButton extends CSprite {
 
+public class CButton extends CNode implements IDrawable {
+
+  PImage imgNormalImage;
+  float fImgSize;
   boolean bButtonOver = false;
 
-  CButton (String strNormalImgPath, int fPosX, int fPosY) {
-    Img = loadImage(strNormalImgPath);
+  CButton (String strNormalImgPath, float fPosX, float fPosY) {
+    imgNormalImage = loadImage(strNormalImgPath);
     fImgSize = 50;
-    image(Img, fPosX, fPosY, fImgSize, fImgSize);
+    this.SetPosition(fPosX, fPosY);
+  }
+  
+  void Draw(){
+    this.Update();
+    
+    image(imgNormalImage, this.GetPositionX(), this.GetPositionY(), fImgSize, fImgSize);
+
   }
 
   void OnMouseOver() {
     update(g_inputController.GetX(), g_inputController.GetY());
     noStroke();
     if (this.bButtonOver) {
-      ellipse(this.fPosX+this.fImgSize/2, this.fPosY+this.fImgSize/2, this.fImgSize, this.fImgSize);
+      ellipse(this.GetPositionX()+this.fImgSize/2, this.GetPositionY()+this.fImgSize/2, this.fImgSize, this.fImgSize);
       ellipseMode(CENTER);
     } 
     else {
@@ -29,7 +37,7 @@ public class CButton extends CSprite {
   }
 
   void update(float fPosX, float fPosY) {
-    if ( bOverButton(this.fPosX, this.fPosY, this.fImgSize, this.fImgSize) ) {
+    if ( bOverButton(this.GetPositionX(), this.GetPositionY(), this.fImgSize, this.fImgSize) ) {
       this.bButtonOver = true;
     } 
     else {
