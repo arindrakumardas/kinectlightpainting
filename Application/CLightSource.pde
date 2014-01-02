@@ -1,6 +1,15 @@
 public class CLightSource {
 
-  IInputController g_inputController = new CInputMouse();
+  //@attn: vishnu
+  //1- 'g_' prefix means global variables, for which the variables can be accessed in any scope, inside any class
+  //2- if you define below like this, this is a member variable instead of a global.
+  //3- g_lightSource is already defined in Application.pde, why declare and create a new one again here?
+//  IInputController g_inputController = new CInputMouse();
+
+  //@attn: vishnu
+  //1- i don't understand why CCanvas would be created inside a CLightSource, it should be the other way round,
+  // i.e. a CLightSource to be created inside CCanvas
+  //2- if you need to access CCanvas variable inside this class, you can declare it Application.pde as global variable then you can access it everywhere.
   CCanvas g_ccanvas=null;
 
 
@@ -31,6 +40,9 @@ public class CLightSource {
      float fWeight = dist(fX, fY, fPx, fPy);
      float fInvWeight=100/fWeight;*/
 
+    //@vishnu
+    //1- Draw() is a fucntion which is called 60 times in 1 sec. are you sure you want to create a new object 60 times in 1sec?
+    //can you do this in Init() or constructor?
     g_ccanvas= new CCanvas();
 
 

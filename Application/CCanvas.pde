@@ -1,17 +1,15 @@
 public class CCanvas extends CNode implements IDrawable {
-
-  //  public int iX=0;
-  //  public int iY=0;loat fX;
-
-
   public int iWidth = 400;
   public int iHeight = 300;
 
   public CPoint cptAnchorPoint = null; //value range: (0,1) from left to right
-
   public color cBackgroundColor = color(128, 128, 128); //grey
   
-  CLightSource g_lightSource = new CLightSource();
+  //@attn: vishnu
+  //1- 'g_' prefix means global variables, for which the variables can be accessed in any scope, inside any class
+  //2- if you define below like this, this is a member variable instead of a global.
+  //3- g_lightSource is already defined in Application.pde, why declare and create a new one again here?
+//  CLightSource g_lightSource = new CLightSource();
 
 
   CCanvas() {        
