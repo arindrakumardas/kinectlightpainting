@@ -1,7 +1,0 @@
-
-
-interface IDrawable{
-  void Draw();
-  
-  
-}
