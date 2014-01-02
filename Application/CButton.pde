@@ -1,11 +1,9 @@
 /* --------------------------------------------------------------------------
- * This code is better written for implementing buttons
- * but I haven't figured out yet how to load the image in CSprite
  * @author:  irene
  * date:  2/1/2014 (m/d/y)
  * ----------------------------------------------------------------------------
  */
-PImage img;
+PImage Img;
 float fImgSize;
 
 public class CButton extends CSprite {
@@ -13,8 +11,9 @@ public class CButton extends CSprite {
   boolean bButtonOver = false;
 
   CButton (String strNormalImgPath, int fPosX, int fPosY) {
-    img = loadImage(strNormalImgPath);
+    Img = loadImage(strNormalImgPath);
     fImgSize = 50;
+    image(Img, fPosX, fPosY, fImgSize, fImgSize);
   }
 
   void OnMouseOver() {
@@ -27,10 +26,9 @@ public class CButton extends CSprite {
     else {
       background(0);   //erases the circle over selection
     }
-    image(img, fPosX, fPosY, fImgSize, fImgSize);
   }
 
-  void update(int fPosX, int fPosY) {
+  void update(float fPosX, float fPosY) {
     if ( bOverButton(this.fPosX, this.fPosY, this.fImgSize, this.fImgSize) ) {
       this.bButtonOver = true;
     } 
@@ -42,13 +40,12 @@ public class CButton extends CSprite {
   void mousePressed() {
     if (this.bButtonOver) { 
       g_pageController.GotoPageCapture(); // not sure if this is the right page, please check it
-      background(255, 34, 55);
     }
   }
 
-  boolean bOverButton(int fPosX, int fPosY, int width, int height) {
-    if (g_inputController.GetX() >= x && g_inputController.GetX() <= fPosX+width && 
-      g_inputController.GetY() >= y && g_inputController.GetY() <= fPosY+height) {
+  boolean bOverButton(float fPosX, float fPosY, float width, float height) {
+    if (g_inputController.GetX() >= fPosX && g_inputController.GetX() <= fPosX+width && 
+      g_inputController.GetY() >= fPosY && g_inputController.GetY() <= fPosY+height) {
       return true;
     } 
     else {
