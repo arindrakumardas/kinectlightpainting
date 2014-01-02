@@ -6,22 +6,19 @@
  * ----------------------------------------------------------------------------
  */
 PImage img;
-float fPosX = 0; 
-float fPosY = 0;
 float fImgSize;
 
 public class CButton extends CSprite {
 
   boolean bButtonOver = false;
 
-  CButton (PImage img, int x, int y) {
-    fPosX = x;
-    fPosY = y;
+  CButton (String strNormalImgPath, int fPosX, int fPosY) {
+    img = loadImage(strNormalImgPath);
     fImgSize = 50;
   }
 
   void OnMouseOver() {
-    update(mouseX, mouseY);
+    update(g_inputController.GetX(), g_inputController.GetY());
     noStroke();
     if (this.bButtonOver) {
       ellipse(this.fPosX+this.fImgSize/2, this.fPosY+this.fImgSize/2, this.fImgSize, this.fImgSize);
@@ -33,7 +30,7 @@ public class CButton extends CSprite {
     image(img, fPosX, fPosY, fImgSize, fImgSize);
   }
 
-  void update(int x, int y) {
+  void update(int fPosX, int fPosY) {
     if ( bOverButton(this.fPosX, this.fPosY, this.fImgSize, this.fImgSize) ) {
       this.bButtonOver = true;
     } 
@@ -49,9 +46,9 @@ public class CButton extends CSprite {
     }
   }
 
-  boolean bOverButton(int x, int y, int width, int height) {
-    if (mouseX >= x && mouseX <= x+width && 
-      mouseY >= y && mouseY <= y+height) {
+  boolean bOverButton(int fPosX, int fPosY, int width, int height) {
+    if (g_inputController.GetX() >= x && g_inputController.GetX() <= fPosX+width && 
+      g_inputController.GetY() >= y && g_inputController.GetY() <= fPosY+height) {
       return true;
     } 
     else {
