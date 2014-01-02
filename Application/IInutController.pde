@@ -1,9 +1,5 @@
 public interface IInputController{
   public boolean bIsOn = true;
-  public enum eType{
-    eMOUSE,
-    eKINECT
-  };
 
   public boolean Init();  
   
