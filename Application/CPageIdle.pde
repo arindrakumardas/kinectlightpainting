@@ -29,7 +29,7 @@ class CPageIdle extends CScene{
     this.AddChild(canvas);
     
     //Create button
-    CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png"); //change to another image
+    CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
     startButton.Init();
 //    this.AddChild(startButton);
     

@@ -24,7 +24,7 @@ class CPageDisplay extends CScene {
     this.AddChild(testLabel);
 
     //Create button
-    CButton refreshButton = new CButton("RefreshBtn", width - 100, 30, "refresh.png", "refresh-neg.png"); //change to another image
+    CButton refreshButton = new CButton("RefreshBtn", width - 100, 30, "refresh.png", "refresh-neg.png", "Start over"); //change to another image
     refreshButton.Init();
     // this.AddChild(refreshButton); 
     
@@ -35,7 +35,7 @@ class CPageDisplay extends CScene {
     this.AddChild(refreshLabel);
 
     //Create button
-    CButton homeButton = new CButton("HomeBtn", width - 100, 350, "home.png", "home-neg.png"); //change to another image
+    CButton homeButton = new CButton("HomeBtn", width - 100, 350, "home.png", "home-neg.png", "Home screen"); //change to another image
     homeButton.Init();
     // this.AddChild(homeButton); 
     
@@ -58,7 +58,7 @@ class CPageDisplay extends CScene {
     if(theEvent.getName() == "HomeBtn"){
       g_pageController.GotoPageIdle();
     }
-    else if (theEvent.getName() == "RefreshBtn"){
+    if (theEvent.getName() == "RefreshBtn"){
       g_pageController.GotoPageCapture();
     }
   }

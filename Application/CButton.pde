@@ -12,6 +12,7 @@ public class CButton extends CNode implements IDrawable {
   PImage imgSelectedImage;
   float fImgSize = 50;
   boolean bButtonOver = false;
+  
 
   //@depecated
   CButton (String strNormalImgPath, float fPosX, float fPosY) {
@@ -19,18 +20,20 @@ public class CButton extends CNode implements IDrawable {
     this.SetPosition(fPosX, fPosY);
   }
   
-  CButton (String strBtnName, float fPosX, float fPosY, String strNormalImgPath, String strSelectedImgPath) {
+  CButton (String strBtnName, float fPosX, float fPosY, String strNormalImgPath, String strSelectedImgPath, String strBtnInfo) {
     imgNormalImage = loadImage(strNormalImgPath);
     imgNormalImage.resize(int(fImgSize), int(fImgSize));
     imgSelectedImage = loadImage(strSelectedImgPath);
     imgSelectedImage.resize(int(fImgSize), int(fImgSize));
     this.SetPosition(fPosX, fPosY);
     
+    
     Button thisBtn = g_cp5Controller.addButton(strBtnName);
     thisBtn.setPosition(fPosX,fPosY)
 //         .setSize(int(fImgSize),int(fImgSize))
          .setImage(imgNormalImage, Controller.DEFAULT) // Controller.DEFAULT (background) Controller.OVER (foreground) Controller.ACTIVE (active)
          .setImage(imgSelectedImage, Controller.OVER) // Controller.DEFAULT (background) Controller.OVER (foreground) Controller.ACTIVE (active)
+         .setCaptionLabel(strBtnInfo)      // I'd like to add a Controller.OVER here but it doesn't work
          .updateSize()
          ;
   }
@@ -64,7 +67,7 @@ public class CButton extends CNode implements IDrawable {
       this.bButtonOver = false;
     }
   }
-*/
+
   void mousePressed() {
     if (this.bButtonOver) { 
       g_pageController.GotoPageCapture(); // not sure if this is the right page, please check it
@@ -80,5 +83,6 @@ public class CButton extends CNode implements IDrawable {
       return false;
     }
   }
+  */
 }
 
