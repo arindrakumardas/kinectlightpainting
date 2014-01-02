@@ -45,7 +45,6 @@ class CPageIdle extends CScene{
   
     
   public void ControlEventHandler(ControlEvent theEvent) {
-    CLogger.Debug("CPageIdle.ControlEvent(). Name:" + theEvent.getName() + " Value:" + theEvent.getValue());
     CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
     
     if(theEvent.getName() == "StartBtn"){
