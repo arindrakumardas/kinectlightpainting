@@ -24,9 +24,9 @@ class CPageDisplay extends CScene {
     this.AddChild(testLabel);
 
     //Create button
-    CButton refreshButton = new CButton("refresh.png", width - 100, 30);
+    CButton refreshButton = new CButton("RefreshBtn", width - 100, 30, "refresh.png", "refresh-neg.png"); //change to another image
     refreshButton.Init();
-    this.AddChild(refreshButton); 
+    // this.AddChild(refreshButton); 
     
     //Create label for refresh button
     CLabel refreshLabel = new CLabel("Start over");  // I would like it on MouseOver -ire
@@ -35,9 +35,9 @@ class CPageDisplay extends CScene {
     this.AddChild(refreshLabel);
 
     //Create button
-    CButton homeButton = new CButton("home.png", width - 100, 350);
+    CButton homeButton = new CButton("HomeBtn", width - 100, 350, "home.png", "home-neg.png"); //change to another image
     homeButton.Init();
-    this.AddChild(homeButton); 
+    // this.AddChild(homeButton); 
     
     //Create label for home button
     CLabel homeLabel = new CLabel("Home screen");  // I would like it on MouseOver -ire
