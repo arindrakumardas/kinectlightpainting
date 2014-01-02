@@ -49,5 +49,18 @@ class CPageDisplay extends CScene {
 
     return true;
   }
+  
+  
+  public void ControlEventHandler(ControlEvent theEvent) {
+    CLogger.Debug("CPageIdle.ControlEvent(). Name:" + theEvent.getName() + " Value:" + theEvent.getValue());
+    CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
+    
+    if(theEvent.getName() == "HomeBtn"){
+      g_pageController.GotoPageIdle();
+    }
+    else if (theEvent.getName() == "RefreshBtn"){
+      g_pageController.GotoPageCapture();
+    }
+  }
 }
 

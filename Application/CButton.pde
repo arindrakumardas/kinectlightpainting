@@ -43,6 +43,7 @@ public class CButton extends CNode implements IDrawable {
 
   }
 
+/* ----------- I think this one can be deleted, as it is covered by ControlP5 --------------
   void OnMouseOver() {
     update(g_inputController.GetX(), g_inputController.GetY());
     noStroke();
@@ -63,7 +64,7 @@ public class CButton extends CNode implements IDrawable {
       this.bButtonOver = false;
     }
   }
-
+*/
   void mousePressed() {
     if (this.bButtonOver) { 
       g_pageController.GotoPageCapture(); // not sure if this is the right page, please check it
