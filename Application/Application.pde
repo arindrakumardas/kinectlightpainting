@@ -8,6 +8,8 @@
 //import testpackage.*;
 //import tuio.*;
 
+
+import SimpleOpenNI.*;
 import java.util.*;
 import controlP5.*;
 
@@ -16,24 +18,34 @@ import controlP5.*;
 CPageController g_pageController = null; //this is a singleton
 IInputController g_inputController = null; //@TODO: remove from global and passing to classes if necessary
 CLightSource g_lightSource = null;
-ControlP5 g_cp5Controller;
+ControlP5 g_cp5Controller = null;
+
+SimpleOpenNI g_openNI = null;
 
 void setup(){
   size(640, 480); //size of the canvas
   background(0,0,0);
   
    
-  //Init all controllers or global vars here
- // noLoop();
+  //Init PageController
   g_pageController = new CPageController();
 
   g_lightSource = new CLightSource();
-   
-   
-   //@TODO: define InputInterface here
-  g_inputController = new CInputMouse();
+  
+  // Init InputController
+  //@TODO: define InputInterface here
+  g_openNI = new SimpleOpenNI(this);
+  if (g_openNI.isInit() == true)
+  {
+    g_inputController = new CInputKinect();
+    CLogger.Info("InputController : InputKinect");
+  }else{
+    g_inputController = new CInputMouse();
+    CLogger.Info("InputController : InputMouse");
+  }
   g_inputController.Init();
    
+  // Init CP5 GUI controller
   g_cp5Controller = new ControlP5(this);
   
   // GO TO THE first default page 
