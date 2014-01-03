@@ -20,12 +20,11 @@ IInputController g_inputController = null; //@TODO: remove from global and passi
 CLightSource g_lightSource = null;
 ControlP5 g_cp5Controller = null;
 
-SimpleOpenNI g_openNI = null;
+SimpleOpenNI g_kinect = null;
 
 void setup(){
   size(640, 480); //size of the canvas
   background(0,0,0);
-  
    
   //Init PageController
   g_pageController = new CPageController();
@@ -33,9 +32,8 @@ void setup(){
   g_lightSource = new CLightSource();
   
   // Init InputController
-  //@TODO: define InputInterface here
-  g_openNI = new SimpleOpenNI(this);
-  if (g_openNI.isInit() == true)
+  g_kinect = new SimpleOpenNI(this);
+  if (g_kinect.isInit() == true)
   {
     g_inputController = new CInputKinect();
     CLogger.Info("InputController : InputKinect");
@@ -53,7 +51,7 @@ void setup(){
 }
  
 void draw() {
- 
+  g_inputController.Update();
   g_pageController.curPage.Draw();
   
   
@@ -63,7 +61,10 @@ void mousePressed(){
 //  g_pageController.GotoPageCapture();
 }
 
-// CP5 Control event controllers (required by CP5)
+
+// -----------------------------------------------------------------
+// CP5 Control event callbacks (required by CP5)
+// -----------------------------------------------------------------
 public void controlEvent(ControlEvent theEvent) {
   g_pageController.curPage.ControlEventHandler(theEvent);
 //  n = 0;
@@ -76,3 +77,32 @@ public void controlEvent(ControlEvent theEvent) {
 ////  c1 = c2;
 ////  c2 = color(0,160,100);
 //}
+
+
+// -----------------------------------------------------------------
+// SImpleOpenNI callbacks
+// -----------------------------------------------------------------
+// hand events
+
+void onNewHand(SimpleOpenNI curContext,int handId,PVector pos)
+{
+  ((CInputKinect) g_inputController).OnNewHand(curContext, handId, pos);
+}
+
+void onTrackedHand(SimpleOpenNI curContext,int handId, PVector pos)
+{
+  ((CInputKinect) g_inputController).OnTrackedHand(curContext, handId, pos);
+}
+
+void onLostHand(SimpleOpenNI curContext,int handId)
+{
+  ((CInputKinect) g_inputController).OnLostHand(curContext, handId);
+}
+
+// -----------------------------------------------------------------
+// gesture events
+
+void onCompletedGesture(SimpleOpenNI curContext,int gestureType, PVector pos)
+{
+  ((CInputKinect) g_inputController).OnCompletedGesture(curContext, gestureType, pos);
+}

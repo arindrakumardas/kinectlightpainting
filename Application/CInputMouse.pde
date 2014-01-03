@@ -7,6 +7,9 @@ public class CInputMouse implements IInputController{
     return true;
   }
   
+  public void Update(){
+  }
+  
   public float GetX(){
     return mouseX;
   }
