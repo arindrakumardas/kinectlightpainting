@@ -21,6 +21,7 @@ ControlP5 g_cp5Controller;
 void setup(){
   size(640, 480); //size of the canvas
   background(0,0,0);
+  
    
   //Init all controllers or global vars here
  // noLoop();
