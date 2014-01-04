@@ -12,12 +12,14 @@ public class CButton extends CNode implements IDrawable {
   PImage imgSelectedImage;
   float fImgSize = 50;
   boolean bButtonOver = false;
+  String strBtnInfo;
   
 
   //@depecated
   CButton (String strNormalImgPath, float fPosX, float fPosY) {
     imgNormalImage = loadImage(strNormalImgPath);
     this.SetPosition(fPosX, fPosY);
+    
   }
   
   CButton (String strBtnName, float fPosX, float fPosY, String strNormalImgPath, String strSelectedImgPath, String strBtnInfo) {
@@ -33,20 +35,28 @@ public class CButton extends CNode implements IDrawable {
 //         .setSize(int(fImgSize),int(fImgSize))
          .setImage(imgNormalImage, Controller.DEFAULT) // Controller.DEFAULT (background) Controller.OVER (foreground) Controller.ACTIVE (active)
          .setImage(imgSelectedImage, Controller.OVER) // Controller.DEFAULT (background) Controller.OVER (foreground) Controller.ACTIVE (active)
-         .setCaptionLabel(strBtnInfo)      // I'd like to add a Controller.OVER here but it doesn't work
+         .setCaptionLabel(strBtnInfo)
          .updateSize()
          ;
+    
+/*    if (g_cp5Controller.onMouseOver()) {
+        CLabel btnLabel = new CLabel(strBtnInfo);
+        btnLabel.fFontSize = 8;
+        btnLabel.SetPosition(width-75, fPosY+60);
+        this.AddChild(btnLabel);  
+      }
+*/
   }
 
-/* this exists also in CSprite */ 
   void Draw(){
     this.Update();
     
     image(imgNormalImage, this.GetPositionX(), this.GetPositionY(), fImgSize, fImgSize);
+    
 
   }
 
-/* ----------- I think this one can be deleted, as it is covered by ControlP5 --------------
+/* ----------- I think this one can be deleted, as it is covered by ControlP5 -------------- ire 
   void OnMouseOver() {
     update(g_inputController.GetX(), g_inputController.GetY());
     noStroke();
@@ -68,7 +78,7 @@ public class CButton extends CNode implements IDrawable {
     }
   }
 
-  void mousePressed() {
+  /*void mousePressed() {
     if (this.bButtonOver) { 
       g_pageController.GotoPageCapture(); // not sure if this is the right page, please check it
     }
@@ -83,6 +93,6 @@ public class CButton extends CNode implements IDrawable {
       return false;
     }
   }
-  */
+*/  
 }
 

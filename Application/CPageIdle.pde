@@ -33,16 +33,18 @@ class CPageIdle extends CScene {
     startButton.Init();
     //    this.AddChild(startButton);
 
+/* ------------- added label in CButton class -----------------------    
     //Create label for start button
-    CLabel startLabel = new CLabel("Start capturing");      // I would like it on MouseOver -ire
+    CLabel startLabel = new CLabel("Start capturing");
     startLabel.fFontSize = 8;
     startLabel.SetPosition(width-75, 30+60);    //(-75,60) is the distance from position, for this I'm not writing 90 instead
-    this.AddChild(startLabel);
+    this.AddChild(startLabel); 
+ */
 
 
     return true;
   }
-  
+
 
   public void ControlEventHandler(ControlEvent theEvent) {
     CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);

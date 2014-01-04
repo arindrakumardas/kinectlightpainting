@@ -59,7 +59,6 @@ void draw() {
   g_inputController.DrawCursor();
   g_pageController.curPage.Draw();
   
-  
 }
 
 // -----------------------------------------------------------------
