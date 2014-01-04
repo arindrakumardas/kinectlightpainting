@@ -1,6 +1,5 @@
 public class CInputKinect implements IInputController{
-  int iHandPathListSize = 20; //this determine how long the path will be 
-  Map<Integer,ArrayList<PVector>> vecHandPathListMap = new HashMap<Integer,ArrayList<PVector>>();
+
   
   CInputKinect(){
     
@@ -30,20 +29,46 @@ public class CInputKinect implements IInputController{
     g_kinect.update();
   }
   
+  public Map<Integer,ArrayList<CTimePVector>> GetAllPath(){
+    //TODO
+    return this.tvecPathListMap;
+  }
+  
+  public ArrayList<PVector> GetPath(int iInputId){
+    ArrayList<PVector> vecProjPosList = new ArrayList<PVector>();
+    ArrayList<PVector> vecRealPosList = this.vecPathListMap.get(new Integer(iInputId));;
+    if(vecRealPosList == null){
+      return null;
+    }
+ 
+    PVector vecRealPos;
+    PVector vecProjPos = new PVector();
+        
+    Iterator itrVecPos = vecRealPosList.iterator();
+    while(itrVecPos.hasNext())
+    {
+      vecRealPos = (PVector) itrVecPos.next(); 
+      g_kinect.convertRealWorldToProjective(vecRealPos,vecProjPos);
+      
+      vecProjPosList.add(vecProjPos);
+    }
+    
+    return vecRealPosList;
+  }
+  
   public float GetX(){
-    if(this.vecHandPathListMap.size() == 0)
+    if(this.vecPathListMap.size() == 0)
     {
       return -1;
     }
-      Iterator itr = this.vecHandPathListMap.entrySet().iterator();     
+      Iterator itr = this.vecPathListMap.entrySet().iterator();     
       while(itr.hasNext())
       {
         Map.Entry mapEntry = (Map.Entry)itr.next(); 
-        int iHandId =  (Integer)mapEntry.getKey();
+        int iHandId =  (Integer) mapEntry.getKey();
         ArrayList<PVector> vecPosList = (ArrayList<PVector>)mapEntry.getValue();
         PVector vecRealWorldPos;
         PVector vecProjectivePos = new PVector();
-        
         
         Iterator itrVecPos = vecPosList.iterator();
         while(itrVecPos.hasNext())
@@ -60,11 +85,11 @@ public class CInputKinect implements IInputController{
       return -1;
   }
   public float GetY(){
-    if(this.vecHandPathListMap.size() == 0)
+    if(this.vecPathListMap.size() == 0)
     {
       return -1;
     }
-      Iterator itr = this.vecHandPathListMap.entrySet().iterator();     
+      Iterator itr = this.vecPathListMap.entrySet().iterator();     
       while(itr.hasNext())
       {
         Map.Entry mapEntry = (Map.Entry)itr.next(); 
@@ -91,11 +116,11 @@ public class CInputKinect implements IInputController{
   }
   
   public float GetLastX(){
-    if(this.vecHandPathListMap.size() == 0)
+    if(this.vecPathListMap.size() == 0)
     {
       return -1;
     }
-      Iterator itr = this.vecHandPathListMap.entrySet().iterator();     
+      Iterator itr = this.vecPathListMap.entrySet().iterator();     
       while(itr.hasNext())
       {
         Map.Entry mapEntry = (Map.Entry)itr.next(); 
@@ -127,11 +152,11 @@ public class CInputKinect implements IInputController{
       return -1;
   }
   public float GetLastY(){
-        if(this.vecHandPathListMap.size() == 0)
+        if(this.vecPathListMap.size() == 0)
     {
       return -1;
     }
-      Iterator itr = this.vecHandPathListMap.entrySet().iterator();     
+      Iterator itr = this.vecPathListMap.entrySet().iterator();     
       while(itr.hasNext())
       {
         Map.Entry mapEntry = (Map.Entry)itr.next(); 
@@ -162,6 +187,11 @@ public class CInputKinect implements IInputController{
       return -1;
   }
   
+  public void DrawCursor(){
+    //TODO: visualise the cursor
+    
+  }
+  
   // -----------------------------------------------------------------
   // SImpleOpenNI callbacks
   // -----------------------------------------------------------------
@@ -174,20 +204,22 @@ public class CInputKinect implements IInputController{
     ArrayList<PVector> vecPosList = new ArrayList<PVector>();
     vecPosList.add(vecPos);
  
-    this.vecHandPathListMap.put(iHandId, vecPosList);
+    this.vecPathListMap.put(iHandId, vecPosList);
   }
   
   void OnTrackedHand(SimpleOpenNI curContext,int handId,PVector pos)
   {
-    CLogger.Info("onTrackedHand - handId: " + handId + ", pos: " + pos );
+//    CLogger.Info("onTrackedHand - handId: " + handId + ", pos: " + pos );
     
-    ArrayList<PVector> vecPosList = vecHandPathListMap.get(handId);
+    ArrayList<PVector> vecPosList = this.vecPathListMap.get(handId);
     if(vecPosList == null){
       return;
     }
     
     vecPosList.add(0, pos);
-    if(vecPosList.size() >= this.iHandPathListSize){
+    //TODO: also keep another vecPathListMap of proj space
+    
+    if(vecPosList.size() >= this.iPathListSize){
       //remove the last point
       vecPosList.remove(vecPosList.size()-1); 
     }
@@ -196,7 +228,7 @@ public class CInputKinect implements IInputController{
   void OnLostHand(SimpleOpenNI curContext,int handId)
   {
     CLogger.Info("[InputKinect.onLostHand] - handId: " + handId);
-    vecHandPathListMap.remove(handId);
+    this.vecPathListMap.remove(handId);
   }
   
   // -----------------------------------------------------------------

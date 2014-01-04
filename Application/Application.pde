@@ -17,19 +17,23 @@ import controlP5.*;
  
 CPageController g_pageController = null; //this is a singleton
 IInputController g_inputController = null; //@TODO: remove from global and passing to classes if necessary
-CLightSource g_lightSource = null;
+
+//@attn: vishnu
+//@from: gigi
+//light Source can be more than 1, it should not be global
+//CLightSource g_lightSource = null;
 ControlP5 g_cp5Controller = null;
 
 SimpleOpenNI g_kinect = null;
 
 void setup(){
-  size(640, 480); //size of the canvas
+  size(640, 480); //size of the sketch
   background(0,0,0);
    
   //Init PageController
   g_pageController = new CPageController();
 
-  g_lightSource = new CLightSource();
+//  g_lightSource = new CLightSource();
   
   // Init InputController
   g_kinect = new SimpleOpenNI(this);
@@ -52,13 +56,25 @@ void setup(){
  
 void draw() {
   g_inputController.Update();
+  g_inputController.DrawCursor();
   g_pageController.curPage.Draw();
   
   
 }
 
+// -----------------------------------------------------------------
+// Processing default mouse callbacks
+// -----------------------------------------------------------------
 void mousePressed(){
-//  g_pageController.GotoPageCapture();
+  if(g_inputController instanceof CInputMouse){ 
+    ((CInputMouse)g_inputController).MousePressed();
+  }
+}
+
+void mouseMoved(){
+  if(g_inputController instanceof CInputMouse){ 
+    ((CInputMouse)g_inputController).MouseMoved();
+  }
 }
 
 

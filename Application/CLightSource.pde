@@ -1,4 +1,14 @@
 public class CLightSource {
+  color colLight = 0;
+  float fDefatulSize = 20;
+  
+  
+  
+  CLightSource(){
+    this.colLight = color(255, 255, 0, 153);
+    
+  }
+  
 
   //@attn: vishnu
   //1- 'g_' prefix means global variables, for which the variables can be accessed in any scope, inside any class
