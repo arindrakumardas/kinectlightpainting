@@ -31,7 +31,7 @@ class CPageIdle extends CScene {
     //Create button
     CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
     startButton.Init();
-    //    this.AddChild(startButton);
+    //    this.AddChild(startButton); //the CButton is added by CP5 so no need to be added to the Layer
 
 /* ------------- added label in CButton class -----------------------    
     //Create label for start button

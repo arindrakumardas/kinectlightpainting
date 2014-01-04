@@ -33,7 +33,7 @@ public class CCanvas extends CNode implements IDrawable {
       return false;
     }
 
-    CLogger.Debug("Ccanvas.Init()");
+    CLogger.Debug("[CCanvas.Init()]");
     this.DrawBackground();
 
     return true;
@@ -106,7 +106,7 @@ public class CCanvas extends CNode implements IDrawable {
           //only draw if the point is still alive and within canvas
           //FIXME: a better way is not to check whether PointInsideCanvas but use a mask as a frame to cover the 4 sides
           
-           CLogger.Debug("[Canvas.Draw][" +iIdx +"] " + " PointTime:" + tvecPos.iTime + " Age: " + (millis() - tvecPos.iTime) + "ms" + " Distance:" + fDistance + " TimeSpent:" + fTimeSpent + " Speed: "+ fSpeed);
+//           CLogger.Debug("[Canvas.Draw][" +iIdx +"] " + " PointTime:" + tvecPos.iTime + " Age: " + (millis() - tvecPos.iTime) + "ms" + " Distance:" + fDistance + " TimeSpent:" + fTimeSpent + " Speed: "+ fSpeed);
           if(millis() - tvecPos.iTime <= iLightLifeSpan){
             if(PointInsideCanvas(tvecPos.x, tvecPos.y)){
               if(fSpeed > 1){ //speed threshold. Speed rnage: [0,5], factor [0.1, 1]
@@ -114,7 +114,7 @@ public class CCanvas extends CNode implements IDrawable {
                   fSpeed = 5; 
                 }
                 float fFactor = 1 - map(fSpeed, 0, 5, 0, 0.9);
-                CLogger.Debug("[Canvas.Draw]" + " fSpeed:" +fSpeed + " fFactor:" + fFactor);
+//                CLogger.Debug("[Canvas.Draw]" + " fSpeed:" +fSpeed + " fFactor:" + fFactor);
                 strokeWeight(curLightSource.fDefatulSize * fFactor);
               }else{
                 strokeWeight(curLightSource.fDefatulSize); 

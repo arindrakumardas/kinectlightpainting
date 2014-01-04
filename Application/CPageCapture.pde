@@ -5,10 +5,12 @@
  * ----------------------------------------------------------------------------
  */
 
-class CPageCapture extends CScene {
+class CPageCapture extends CScene implements ITimerHandler{
 
   float fCaptureTime;
   float fStartTime = 10;
+  
+  int iExposureTime = 6; //in sec
 
   CPageCapture() {
     super();
@@ -31,7 +33,14 @@ class CPageCapture extends CScene {
     //Create red light indicator
     fill(255, 0, 0, 100);
     ellipse(50, 50, 30, 30); 
-    CTimer captureTime = new CTimer(fStartTime);
+//    CTimer captureTime = new CTimer(fStartTime);
+    CTimerLabel countdownTimer = new CTimerLabel(this, iExposureTime); //count down 6sec
+    countdownTimer.Init();
+    countdownTimer.fFontSize = 20;
+    countdownTimer.SetPosition(width/2, height/2);
+//    countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
+    this.AddChild(countdownTimer);
+    
 
     return true;
   }
@@ -41,9 +50,12 @@ class CPageCapture extends CScene {
  * the timer is working, but instead of changing to PageCapture, it keeps PageIdle 
  */ 
   void Draw() {   
+    //@attn: irene
+    //This is the line that is essential, always call parent's function when you overwrite them
+    super.Draw();
 
    
-    
+   
     this.fCaptureTime = this.fStartTime - millis()/1000;
     
     if (this.fCaptureTime%2 == 1) {
@@ -55,7 +67,8 @@ class CPageCapture extends CScene {
       ellipse(50, 50, 18, 18);
     }
     if (this.fCaptureTime == 0) {
-      g_pageController.GotoPageDisplay();
+      //this should be done at CTimer callback
+//      g_pageController.GotoPageDisplay();
     }
     
 
@@ -63,5 +76,11 @@ class CPageCapture extends CScene {
     
   }
   /*--------------------------------------------------------- */
+  
+  //CTimer callback
+  public void TimeIsUp(){
+    g_pageController.GotoPageDisplay();
+    
+  }
 }
 
