@@ -7,8 +7,8 @@
  */
 
 
-public interface ITimerHandler{
-  public void TimeIsUp();
+public interface ITimerHandler{  
+  public void TimeIsUp(int iTag);
   
   
 }

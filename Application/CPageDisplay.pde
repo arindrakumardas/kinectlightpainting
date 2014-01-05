@@ -61,7 +61,7 @@ class CPageDisplay extends CScene {
       g_pageController.GotoPageIdle();
     }
     if (theEvent.getName() == "RefreshBtn"){
-      g_pageController.GotoPageCapture();
+      g_pageController.GotoPageInitialize();
     }
   }
 }

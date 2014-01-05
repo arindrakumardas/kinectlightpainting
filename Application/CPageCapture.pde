@@ -34,12 +34,13 @@ class CPageCapture extends CScene implements ITimerHandler{
     fill(255, 0, 0, 100);
     ellipse(50, 50, 30, 30); 
 //    CTimer captureTime = new CTimer(fStartTime);
-    CTimerLabel countdownTimer = new CTimerLabel(this, iExposureTime); //count down 6sec
+    CTimerLabel countdownTimer = new CTimerLabel(this); //count down 6sec
     countdownTimer.Init();
     countdownTimer.fFontSize = 20;
     countdownTimer.SetPosition(width/2, height/2);
 //    countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
     this.AddChild(countdownTimer);
+    countdownTimer.StartTimer(iExposureTime);
     
 
     return true;
@@ -70,7 +71,7 @@ class CPageCapture extends CScene implements ITimerHandler{
   }
   
   //CTimer callback
-  public void TimeIsUp(){
+  public void TimeIsUp(int iTag){
     g_pageController.GotoPageDisplay();
     
   }
