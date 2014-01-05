@@ -4,7 +4,7 @@
  * date:  15/12/2012 (m/d/y)
  * ----------------------------------------------------------------------------
  */
- 
+
 //import testpackage.*;
 //import tuio.*;
 
@@ -13,10 +13,11 @@ import SimpleOpenNI.*;
 import java.util.*;
 import controlP5.*;
 
- 
- 
+
+
 CPageController g_pageController = null; //this is a singleton
-IInputController g_inputController = null; //@TODO: remove from global and passing to classes if necessary
+//IInputController g_inputController = null; //@TODO: remove from global and passing to classes if necessary
+CInputManager g_inputManager = null; //this is a singleton
 
 //@attn: vishnu
 //@from: gigi
@@ -24,56 +25,45 @@ IInputController g_inputController = null; //@TODO: remove from global and passi
 //CLightSource g_lightSource = null;
 ControlP5 g_cp5Controller = null;
 
-SimpleOpenNI g_kinect = null;
 
-void setup(){
+void setup() {
   size(640, 480); //size of the sketch
-  background(0,0,0);
-   
+  background(0, 0, 0);
+
   //Init PageController
   g_pageController = new CPageController();
 
-//  g_lightSource = new CLightSource();
-  
-  // Init InputController
-  g_kinect = new SimpleOpenNI(this);
-  if (g_kinect.isInit() == true)
-  {
-    g_inputController = new CInputKinect();
-    CLogger.Info("InputController : InputKinect");
-  }else{
-    g_inputController = new CInputMouse();
-    CLogger.Info("InputController : InputMouse");
-  }
-  g_inputController.Init();
-   
-  // Init CP5 GUI controller
+
+  // Init InputManager
+  g_inputManager = new CInputManager();
+  g_inputManager.Init(this);
+
+
+    // Init CP5 GUI controller
   g_cp5Controller = new ControlP5(this);
-  
+
   // GO TO THE first default page 
   g_pageController.GotoPageIdle();
 }
- 
+
 void draw() {
-  g_inputController.Update();
-  g_inputController.DrawCursor();
+//  g_inputController.DrawCursor();
+  g_inputManager.Update();
   g_pageController.curPage.Draw();
-  
 }
 
 // -----------------------------------------------------------------
 // Processing default mouse callbacks
 // -----------------------------------------------------------------
-void mousePressed(){
-  if(g_inputController instanceof CInputMouse){ 
-    ((CInputMouse)g_inputController).MousePressed();
-  }
+void mousePressed() {
+  //forward mouse event to InputManager
+  g_inputManager.MousePressed();
+  
 }
 
-void mouseMoved(){
-  if(g_inputController instanceof CInputMouse){ 
-    ((CInputMouse)g_inputController).MouseMoved();
-  }
+void mouseMoved() {
+   //forward mouse event to InputManager
+  g_inputManager.MouseMoved();
 }
 
 
@@ -82,7 +72,7 @@ void mouseMoved(){
 // -----------------------------------------------------------------
 public void controlEvent(ControlEvent theEvent) {
   g_pageController.curPage.ControlEventHandler(theEvent);
-//  n = 0;
+  //  n = 0;
 }
 
 //// function colorA will receive changes from 
@@ -99,25 +89,27 @@ public void controlEvent(ControlEvent theEvent) {
 // -----------------------------------------------------------------
 // hand events
 
-void onNewHand(SimpleOpenNI curContext,int handId,PVector pos)
+void onNewHand(SimpleOpenNI curContext, int handId, PVector pos)
 {
-  ((CInputKinect) g_inputController).OnNewHand(curContext, handId, pos);
+  g_inputManager.OnNewHand(curContext, handId, pos);
+  
 }
 
-void onTrackedHand(SimpleOpenNI curContext,int handId, PVector pos)
+void onTrackedHand(SimpleOpenNI curContext, int handId, PVector pos)
 {
-  ((CInputKinect) g_inputController).OnTrackedHand(curContext, handId, pos);
+  g_inputManager.OnTrackedHand(curContext, handId, pos);
 }
 
-void onLostHand(SimpleOpenNI curContext,int handId)
+void onLostHand(SimpleOpenNI curContext, int handId)
 {
-  ((CInputKinect) g_inputController).OnLostHand(curContext, handId);
+  g_inputManager.OnLostHand(curContext, handId);
 }
 
 // -----------------------------------------------------------------
 // gesture events
 
-void onCompletedGesture(SimpleOpenNI curContext,int gestureType, PVector pos)
+void onCompletedGesture(SimpleOpenNI curContext, int gestureType, PVector pos)
 {
-  ((CInputKinect) g_inputController).OnCompletedGesture(curContext, gestureType, pos);
+  g_inputManager.OnCompletedGesture(curContext, gestureType, pos);
 }
+

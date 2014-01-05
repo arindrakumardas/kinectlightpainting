@@ -1,56 +1,29 @@
-public class CInputMouse implements IInputController{
+public class CInputMouse extends CInputControllerBase{
+  public static final int iDefaultInputId = 0; //always 0 because only 1 mouse
+  
   CInputMouse(){
+    super();
     
   }
   
   public boolean Init(){
-//    ArrayList<PVector> vecPosList = new ArrayList<PVector>();
-//    PVector vecPos = new PVector(mouseX, mouseY);
-//    vecPosList.add(0, vecPos);
-// 
-//    this.vecPathListMap.put(0, vecPosList); //always have only 1 cursor, which has id =0
+    if(!super.Init()){
+      return false;
+    }
     
-    ArrayList<CTimePVector> tvecPosList = new ArrayList<CTimePVector>();
     CTimePVector tvecPos = new CTimePVector(millis() , mouseX, mouseY);
-    tvecPosList.add(0, tvecPos);
+    this.tvecPathList.add(0, tvecPos);
  
-    this.tvecPathListMap.put(0, tvecPosList); //always have only 1 cursor, which has id =0
     
     return true;
   }
   
   public void Update(){
-    ArrayList<CTimePVector> tvecPosList = this.tvecPathListMap.get(0);
-    if(tvecPosList == null){
-      return;
-    }
-    CTimePVector tvecPos = new CTimePVector(millis(), mouseX, mouseY);
-    tvecPosList.add(0, tvecPos);
-    
-    if(tvecPosList.size() > this.iPathListSize){
-      //remove the last point
-      tvecPosList.remove(tvecPosList.size()-1); 
-      
-    }
+
+      CTimePVector tvecPos = new CTimePVector(millis(), mouseX, mouseY);
+      this.AddToList(0, tvecPos); //add the lastest pos to front
   }
   
-  public Map<Integer,ArrayList<CTimePVector>> GetAllPath(){
-    
-    return this.tvecPathListMap;
-  }
-  
-  public ArrayList<CTimePVector> GetPath(){
-    return this.GetPath(0);
-  }
-  
-  public ArrayList<CTimePVector> GetPath(int iInputId){
-    ArrayList<CTimePVector> tvecPosList = this.tvecPathListMap.get(new Integer(iInputId));
-    if(tvecPosList == null){
-      return null;
-    }
-    
-    return tvecPosList;
-  }
   
   public float GetX(){
     return mouseX;
