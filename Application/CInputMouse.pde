@@ -4,11 +4,11 @@ public class CInputMouse implements IInputController{
   }
   
   public boolean Init(){
-    ArrayList<PVector> vecPosList = new ArrayList<PVector>();
-    PVector vecPos = new PVector(mouseX, mouseY);
-    vecPosList.add(0, vecPos);
- 
-    this.vecPathListMap.put(0, vecPosList); //always have only 1 cursor, which has id =0
+//    ArrayList<PVector> vecPosList = new ArrayList<PVector>();
+//    PVector vecPos = new PVector(mouseX, mouseY);
+//    vecPosList.add(0, vecPos);
+// 
+//    this.vecPathListMap.put(0, vecPosList); //always have only 1 cursor, which has id =0
     
     ArrayList<CTimePVector> tvecPosList = new ArrayList<CTimePVector>();
     CTimePVector tvecPos = new CTimePVector(millis() , mouseX, mouseY);
@@ -20,20 +20,6 @@ public class CInputMouse implements IInputController{
   }
   
   public void Update(){
-    // old var
-    ArrayList<PVector> vecPosList = this.vecPathListMap.get(0);
-    if(vecPosList == null){
-      return;
-    }
-    PVector vecPos = new PVector(mouseX, mouseY);
-    vecPosList.add(0, vecPos);
-    
-    if(vecPosList.size() > this.iPathListSize){
-      //remove the last point
-      vecPosList.remove(vecPosList.size()-1); 
-    }
-    
-    // new
     ArrayList<CTimePVector> tvecPosList = this.tvecPathListMap.get(0);
     if(tvecPosList == null){
       return;
@@ -53,17 +39,17 @@ public class CInputMouse implements IInputController{
     return this.tvecPathListMap;
   }
   
-  public ArrayList<PVector> GetPath(){
+  public ArrayList<CTimePVector> GetPath(){
     return this.GetPath(0);
   }
   
-  public ArrayList<PVector> GetPath(int iInputId){
-    ArrayList<PVector> vecPosList = this.vecPathListMap.get(new Integer(iInputId));
-    if(vecPosList == null){
+  public ArrayList<CTimePVector> GetPath(int iInputId){
+    ArrayList<CTimePVector> tvecPosList = this.tvecPathListMap.get(new Integer(iInputId));
+    if(tvecPosList == null){
       return null;
     }
     
-    return vecPosList;
+    return tvecPosList;
   }
   
   public float GetX(){

@@ -10,7 +10,12 @@ public class CTimePVector extends PVector{
   
   CTimePVector(int iTimeMS, float x, float y){
    super(x,y);
-   iTime = iTimeMS;
+   this.iTime = iTimeMS;
+  }
+  
+  CTimePVector(int iTimeMS, PVector vecPos){
+    super(vecPos.x, vecPos.y, vecPos.z);
+    this.iTime = iTimeMS; 
   }
   
 }
