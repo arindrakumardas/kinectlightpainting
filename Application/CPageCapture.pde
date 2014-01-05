@@ -44,17 +44,12 @@ class CPageCapture extends CScene implements ITimerHandler{
 
     return true;
   }
-  
-
-/* ---------------- not working yet ----------------------
- * the timer is working, but instead of changing to PageCapture, it keeps PageIdle 
- */ 
+   
   void Draw() {   
     //@attn: irene
     //This is the line that is essential, always call parent's function when you overwrite them
     super.Draw();
 
-   
    
     this.fCaptureTime = this.fStartTime - millis()/1000;
     
@@ -66,16 +61,13 @@ class CPageCapture extends CScene implements ITimerHandler{
       fill(0);
       ellipse(50, 50, 18, 18);
     }
-    if (this.fCaptureTime == 0) {
+/*    if (this.fCaptureTime == 0) {
       //this should be done at CTimer callback
 //      g_pageController.GotoPageDisplay();
     }
-    
-
-    
+ */    
     
   }
-  /*--------------------------------------------------------- */
   
   //CTimer callback
   public void TimeIsUp(){

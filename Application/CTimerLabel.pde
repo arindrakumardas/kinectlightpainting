@@ -80,19 +80,6 @@ public class CTimerLabel extends CLabel{
     //    this.AddChild(timerLabel);
     //text(fCaptureTime, 200, 200);
 
-/* ------- this should be implemented in CPageCapture
-    //Create red light indicator
-    fill(255, 0, 0, 100);
-    ellipse(50, 50, 30, 30);
-    if (this.fCaptureTime%2 == 1) {
-      fill(255, 0, 0, 200);
-      ellipse(50, 50, 18, 18);
-    } 
-    else {
-      fill(0);
-      ellipse(50, 50, 18, 18);
-    }
-*/ 
   }
 }
 

@@ -33,13 +33,12 @@ class CPageIdle extends CScene {
     startButton.Init();
     //    this.AddChild(startButton); //the CButton is added by CP5 so no need to be added to the Layer
 
-/* ------------- added label in CButton class -----------------------    
+/* ------------- do you think this can be added in CButton? ----------------------- ire   */    
     //Create label for start button
     CLabel startLabel = new CLabel("Start capturing");
     startLabel.fFontSize = 8;
     startLabel.SetPosition(width-75, 30+60);    //(-75,60) is the distance from position, for this I'm not writing 90 instead
     this.AddChild(startLabel); 
- */
 
 
     return true;
@@ -50,7 +49,7 @@ class CPageIdle extends CScene {
     CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
 
     if (theEvent.getName() == "StartBtn") {
-      g_pageController.GotoPageCapture();
+      g_pageController.GotoPageInitialize();
     }
   }
 }
