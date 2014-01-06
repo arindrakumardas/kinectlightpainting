@@ -18,9 +18,7 @@ public class CInputManager {
 
     if (this.kinect.isInit() == true)
     {
-      //      g_inputController = new CInputKinect();
       CLogger.Info("[CInputManager.Init()] InputController : InputKinect");
-      //      firstInputControler = new CInputKinect();
 
       this.kinect.setMirror(true); // mirror is by default enabled//
       this.kinect.enableDepth();  // enable depthMap generation 
@@ -69,6 +67,24 @@ public class CInputManager {
     return inputController;
   }
 
+  //only call this when there is no canvas in that page. otherwise there will be cursor too in the canvas
+  //calling this will always draw cursors everwhere
+  public void DrawAllCursor() {
+    // loop throught all inputController and draw on canvas accordingly
+    Map<Integer, CInputControllerBase> inputControllerMap = g_inputManager.GetAllInput();
+    if (inputControllerMap.size() > 0)
+    {
+      Iterator itrInput = inputControllerMap.entrySet().iterator();     
+      while (itrInput.hasNext ())
+      {
+        Map.Entry mapEntry = (Map.Entry)itrInput.next(); 
+        int iInputId =  (Integer)mapEntry.getKey();
+        CInputControllerBase inputController = (CInputControllerBase)mapEntry.getValue();
+
+        inputController.DrawCursor();
+      }
+    }
+  }
 
 
   // -----------------------------------------------------------------

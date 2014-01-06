@@ -62,7 +62,7 @@ public class CCanvas extends CNode implements IDrawable {
 
         if (!this.DrawLight(inputController, curLightSource)) {
           //only DrawCursor outside canvas.
-          //      inputController.DrawCursor();
+          inputController.DrawCursor();
         }
       }
     }

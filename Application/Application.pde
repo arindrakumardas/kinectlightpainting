@@ -47,7 +47,6 @@ void setup() {
 }
 
 void draw() {
-//  g_inputController.DrawCursor();
   g_inputManager.Update();
   g_pageController.curPage.Draw();
 }

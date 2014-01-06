@@ -7,6 +7,7 @@
  
 class CNode {
   protected CPoint cptPosition = null;
+  public int iTag = -1; //tag can be used to distinguish each Node
   
   CNode(){ 
   }

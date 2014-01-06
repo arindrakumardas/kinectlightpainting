@@ -9,7 +9,7 @@ public class CTimerLabel extends CLabel{
   public ITimerHandler handler = null;
   public float fTimerDurationSec = 5; //(in sec)Time duration that want to count down
   public boolean bDisplayLabel = true;
-  public int iTag = -1; //tag can be used to distinguish timer from timer
+//  public int iTag = -1; //tag can be used to distinguish timer from timer
 
   protected int iTimerTargetMSec = 0; //(in msec)
   protected int iTimerMSec = 0; //for keeping counting-down time (also the time that will be displayed)

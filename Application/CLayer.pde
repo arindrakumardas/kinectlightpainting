@@ -19,7 +19,7 @@ class CLayer extends CNode implements IDrawable{
       return false;
     }
     
-    CLogger.Debug("[CLayer.Init]");
+//    CLogger.Debug("[CLayer.Init]");
 
     //Init member vars (new object)
     this.arrChildren = new ArrayList();
@@ -30,6 +30,8 @@ class CLayer extends CNode implements IDrawable{
   
   void AddChild(IDrawable child){
     this.arrChildren.add(child);
+    
+//    CLogger.Debug("[CLayer.AddChils()] This: " + this + " Child: " + child);
     
   }
   

@@ -5,7 +5,11 @@
  * ----------------------------------------------------------------------------
  */
 
-class CPageDisplay extends CScene {
+class CPageDisplay extends CScene implements IButtonHandler {
+  protected final int TAG_HOME_BTN = 1;
+  protected final int TAG_REFRESH_BTN = 2;
+  
+  
   CPageDisplay() {
     super();
   }
@@ -24,9 +28,14 @@ class CPageDisplay extends CScene {
     this.AddChild(testLabel);
 
     //Create button
-    CButton refreshButton = new CButton("RefreshBtn", width - 100, 30, "refresh.png", "refresh-neg.png", "Start over"); //change to another image
+//    CButton refreshButton = new CButton("RefreshBtn", width - 100, 30, "refresh.png", "refresh-neg.png", "Start over"); //change to another image
+    CButton refreshButton = new CButton("refresh.png"); //change to another image
     refreshButton.Init();
-    // this.AddChild(refreshButton); 
+    refreshButton.SetHandler(this);
+    refreshButton.SetPosition(width - 100, 30);
+    refreshButton.strBtnCaption = "Start over";
+    refreshButton.iTag = TAG_REFRESH_BTN;
+    this.AddChild(refreshButton); 
 
 /* ------------- do you think this can be added in CButton? ----------------------- ire   */    
     //Create label for refresh button
@@ -37,9 +46,14 @@ class CPageDisplay extends CScene {
  
 
     //Create button
-    CButton homeButton = new CButton("HomeBtn", width - 100, 350, "home.png", "home-neg.png", "Home screen"); //change to another image
+//    CButton homeButton = new CButton("HomeBtn", width - 100, 350, "home.png", "home-neg.png", "Home screen"); //change to another image
+    CButton homeButton = new CButton("home.png"); //change to another image
     homeButton.Init();
-    // this.AddChild(homeButton); 
+    homeButton.SetHandler(this);
+    homeButton.SetPosition(width - 100, 350);
+    homeButton.strBtnCaption = "Go to Home";
+    homeButton.iTag = TAG_HOME_BTN;
+    this.AddChild(homeButton); 
     
 /* ------------- also in CButton? ----------------------- ire */    
     //Create label for home button
@@ -52,17 +66,33 @@ class CPageDisplay extends CScene {
     return true;
   }
   
-  
-  public void ControlEventHandler(ControlEvent theEvent) {
-    CLogger.Debug("CPageIdle.ControlEvent(). Name:" + theEvent.getName() + " Value:" + theEvent.getValue());
-    CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
+  public void Draw(){
+    super.Draw();
+    g_inputManager.DrawAllCursor();
     
-    if(theEvent.getName() == "HomeBtn"){
+  }
+  
+//  public void ControlEventHandler(ControlEvent theEvent) {
+//    CLogger.Debug("CPageIdle.ControlEvent(). Name:" + theEvent.getName() + " Value:" + theEvent.getValue());
+//    CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
+//    
+//    if(theEvent.getName() == "HomeBtn"){
+//      g_pageController.GotoPageIdle();
+//    }
+//    if (theEvent.getName() == "RefreshBtn"){
+//      g_pageController.GotoPageInitialize();
+//    }
+//  }
+  
+  // Implementing IButtonHanlder callback
+  public void OnButtonSelected(int iBtnTag) {
+    CLogger.Info("[CPageIdle.OnButtonSelected] button selected. buttonTag: " + iBtnTag);
+    if(iBtnTag == TAG_HOME_BTN){ //Home button
       g_pageController.GotoPageIdle();
-    }
-    if (theEvent.getName() == "RefreshBtn"){
+    }else if (iBtnTag == TAG_REFRESH_BTN){
       g_pageController.GotoPageInitialize();
     }
+    
   }
 }
 

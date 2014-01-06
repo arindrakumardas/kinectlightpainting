@@ -40,10 +40,6 @@ public class CInputMouse extends CInputControllerBase{
     return pmouseY;
   }
   
-  public void DrawCursor(){
-    
-  }
-  
   public void MousePressed(){
   
   }

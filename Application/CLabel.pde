@@ -43,6 +43,7 @@ public class CLabel extends CNode implements IDrawable{
     
     
   void Update(){    
+    super.Update();
     this.pfFont = createFont(this.strFontName, this.fFontSize, this.bFontSmooth);
     textFont(pfFont);  
     textAlign(iAlignX, iAlignY);
@@ -51,6 +52,7 @@ public class CLabel extends CNode implements IDrawable{
   
   void Draw(){
     this.Update();
+//    CLogger.Debug("[CLabel.Draw] text: "+ this.strText);
 
     text(this.strText, this.GetPositionX(), this.GetPositionY());
 
