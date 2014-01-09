@@ -134,7 +134,7 @@ public class CCanvas extends CNode implements IDrawable {
         itrVecPos.previous();
         fDistance = tvecPos.dist(tvecPreviousPos);
         fTimeSpent = tvecPos.iTime - tvecPreviousPos.iTime;
-        fSpeed = fDistance / fTimeSpent;
+        fSpeed = fDistance / sqrt(fTimeSpent);
       }
       //only draw if the point is still alive and within canvas
       //FIXME: a better way is not to check whether PointInsideCanvas but use a mask as a frame to cover the 4 sides
@@ -219,4 +219,3 @@ public class CCanvas extends CNode implements IDrawable {
     return new PVector(iVertexX, iVertexY);
   }
 }
-
