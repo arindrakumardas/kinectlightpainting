@@ -9,6 +9,8 @@ class CPageDisplay extends CScene implements IButtonHandler {
   protected final int TAG_HOME_BTN = 1;
   protected final int TAG_REFRESH_BTN = 2;
   
+  PImage imgRecordedDrawing = null;
+  
   
   CPageDisplay() {
     super();
@@ -61,6 +63,9 @@ class CPageDisplay extends CScene implements IButtonHandler {
       homeLabel.fFontSize = 8;
       homeLabel.SetPosition(width-75, 350+60);
       this.AddChild(homeLabel);
+      
+      
+      this.imgRecordedDrawing = loadImage(Configs.SAVED_DRAWING_FILEPATH);
 
 
     return true;
@@ -69,6 +74,8 @@ class CPageDisplay extends CScene implements IButtonHandler {
   public void Draw(){
     super.Draw();
     g_inputManager.DrawAllCursor();
+    
+    image(this.imgRecordedDrawing, width/2,height/2);
     
   }
   

@@ -7,6 +7,9 @@ public class CCanvas extends CNode implements IDrawable {
   public CPoint cptAnchorPoint = null; //value range: (0,1) from left to right
   public color cBackgroundColor = color(128, 128, 128); //grey
 
+  protected boolean bIsRecorded = false;
+  protected PGraphics pgRecordedDrawing = null;
+
   //@attn: vishnu
   //1- 'g_' prefix means global variables, for which the variables can be accessed in any scope, inside any class
   //2- if you define below like this, this is a member variable instead of a global.
@@ -29,17 +32,27 @@ public class CCanvas extends CNode implements IDrawable {
   }
 
   boolean Init() {
+    return this.Init(true);
+  }
+
+  boolean Init(boolean bIsDrawingCapture) {
     if (!super.Init()) {
       return false;
     }
 
-    CLogger.Debug("[CCanvas.Init()]");
+    CLogger.Debug("[CCanvas.Init()] IsRecorded: " + bIsRecorded);
+    this.bIsRecorded = bIsDrawingCapture;
+
+    this.pgRecordedDrawing = createGraphics(width, height);
+
+
+
     this.DrawBackground();
 
     return true;
   }
 
-  public void Draw () {
+  public void Draw() {
     this.DrawBackground();
 
     // loop throught all inputController and draw on canvas accordingly
@@ -79,6 +92,7 @@ public class CCanvas extends CNode implements IDrawable {
     //  rect(width/2, height/2, 100,100);
   }
 
+
   public boolean DrawLight(CInputControllerBase inputController, CLightSource curLightSource) {
     boolean bHasDrawnLight = false;
 
@@ -90,9 +104,25 @@ public class CCanvas extends CNode implements IDrawable {
     stroke(curLightSource.colLight);
     strokeJoin(ROUND);
     strokeWeight(curLightSource.fDefatulSize);
+
+    if (this.bIsRecorded) {
+
+
+      this.pgRecordedDrawing.beginShape();
+      this.pgRecordedDrawing.noFill();
+      this.pgRecordedDrawing.stroke(curLightSource.colLight);
+      this.pgRecordedDrawing.strokeJoin(ROUND);
+      this.pgRecordedDrawing.strokeWeight(curLightSource.fDefatulSize);
+    }
     int iIdx = 0;
-    while (itrVecPos.hasNext())
+    while (itrVecPos.hasNext ())
     {
+      if(iIdx == 0){
+        this.pgRecordedDrawing.beginDraw();
+        
+      }else if(iIdx > 0){
+        this.pgRecordedDrawing.endDraw();
+      }
       iIdx++;
       tvecPos = (CTimePVector) itrVecPos.next();
 
@@ -119,12 +149,15 @@ public class CCanvas extends CNode implements IDrawable {
             float fFactor = 1 - map(fSpeed, 0, 5, 0, 0.9);
             //                CLogger.Debug("[Canvas.Draw]" + " fSpeed:" +fSpeed + " fFactor:" + fFactor);
             strokeWeight(curLightSource.fDefatulSize * fFactor);
+            this.pgRecordedDrawing.strokeWeight(curLightSource.fDefatulSize * fFactor);
           }
           else {
             strokeWeight(curLightSource.fDefatulSize);
+            this.pgRecordedDrawing.strokeWeight(curLightSource.fDefatulSize);
           }
 
           vertex(tvecPos.x, tvecPos.y);
+          this.pgRecordedDrawing.vertex(tvecPos.x, tvecPos.y);
           bHasDrawnLight = true;
         }
       }
@@ -134,8 +167,16 @@ public class CCanvas extends CNode implements IDrawable {
       }
     }
     endShape();
-    
+    this.pgRecordedDrawing.endShape();
+
     return bHasDrawnLight;
+  }
+
+  public void SaveDrawing() {
+    if (this.pgRecordedDrawing != null) {
+      this.pgRecordedDrawing.endDraw();
+      this.pgRecordedDrawing.save(Configs.SAVED_DRAWING_FILEPATH);
+    }
   }
 
   public boolean PointInsideCanvas(float fPosX, float fPosY) {

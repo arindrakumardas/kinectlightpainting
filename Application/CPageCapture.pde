@@ -11,6 +11,8 @@ class CPageCapture extends CScene implements ITimerHandler{
   float fStartTime = 10;
   
   int iExposureTime = 6; //in sec
+  
+  protected CCanvas canvas = null; 
 
   CPageCapture() {
     super();
@@ -37,10 +39,15 @@ class CPageCapture extends CScene implements ITimerHandler{
     CTimerLabel countdownTimer = new CTimerLabel(this); //count down 6sec
     countdownTimer.Init();
     countdownTimer.fFontSize = 20;
-    countdownTimer.SetPosition(width/2, height/2);
+    countdownTimer.SetPosition(50, 20);
 //    countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
     this.AddChild(countdownTimer);
     countdownTimer.StartTimer(iExposureTime);
+    
+    //Create canvas (create canvas after because the cursor can be drawn over the above ui compoment)
+    this.canvas = new CCanvas();
+    this.canvas.Init(true);
+    this.AddChild(this.canvas);
     
 
     return true;
@@ -72,6 +79,7 @@ class CPageCapture extends CScene implements ITimerHandler{
   
   //CTimer callback
   public void TimeIsUp(int iTag){
+    this.canvas.SaveDrawing();
     g_pageController.GotoPageDisplay();
     
   }
