@@ -36,6 +36,8 @@ ControlP5 g_cp5Controller = null;
 AudioPlayer CameraShutterSound;
 Minim minim;//audio context
 
+
+
 void setup() {
   size(640, 480); //size of the sketch
   background(0, 0, 0);

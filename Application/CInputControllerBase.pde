@@ -57,6 +57,8 @@ public abstract class CInputControllerBase {
   public abstract float GetLastX();
   public abstract float GetLastY();
 
+  PImage mouseCursor = loadImage("KinectCursor.png");
+  
   public void DrawCursor() { //this will draw a cursor on the input
 
     //visualise the cursor
@@ -64,10 +66,13 @@ public abstract class CInputControllerBase {
     {
       return;
     }
-
-    fill(color(255, 255, 255, 150));
-    noStroke();
-    ellipse(this.GetX(), this.GetY(), fCursorSize, fCursorSize);
+    
+     if(mouseX < 100) {
+    cursor(mouseCursor, 0, 0);
+  } 
+    //fill(color(255, 255, 255, 150));
+    //noStroke();
+    //ellipse(this.GetX(), this.GetY(), fCursorSize, fCursorSize);
   }
 }
 
