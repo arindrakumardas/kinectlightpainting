@@ -26,8 +26,9 @@ class CPageIdle extends CScene implements IButtonHandler {
 
 
     //Create button
-//    CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
+    //CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
     CButton startButton = new CButton("start.png"); //change to another image
+    //startButton.Init(width - 100, 30, "Start capturing");
     startButton.Init(width - 100, 30, "Start capturing");
     startButton.SetHandler(this);
     this.AddChild(startButton); //the CButton is added by CP5 so no need to be added to the Layer

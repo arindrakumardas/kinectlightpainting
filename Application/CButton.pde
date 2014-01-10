@@ -10,6 +10,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
 
   public float fBtnSize = 50;
   public String strBtnCaption = null;
+  public color cCol=color(255, 255, 0, 100);
 
   protected PImage imgNormalImage = null;
   protected PImage imgSelectedImage = null;
@@ -36,7 +37,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
     this.imgSelectedImage.resize(int(fBtnSize), int(fBtnSize));
     //    this.SetPosition(fPosX, fPosY);
   }
-
+  
   public boolean Init() {
     return this.Init(0, 0, null);
   }
@@ -112,7 +113,8 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
       //      CLogger.Debug("[CButton.Draw()] ButtonOverTime: "+ iButtonOverTime + " Over %: " +  float(iButtonOverTime) / float(SELECT_BUTTON_REQUIRED_TIME));
 
       noStroke();
-      fill(color(255, 255, 0, 100));
+      
+     fill(cCol);
       arc(this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize, -HALF_PI, fArcEndAngle, PIE);
     } 
     else {

@@ -26,16 +26,17 @@ public class CTimerLabel extends CLabel{
   
   CTimerLabel(ITimerHandler timerHandler){
     this.handler = timerHandler;
+   // player1.play();
   }
   
   public void StartTimer(float fTimerDurationSec){
     this.bIsAlive = true;
-    
+   // player1.play();
     this.fTimerDurationSec = fTimerDurationSec;
     this.iTimerTargetMSec = int(millis() + fTimerDurationSec*1000);
     this.iTimerMSec = int(fTimerDurationSec*1000);
     CLogger.Debug("[CTimer.StartTimer] iTag:" + iTag + " timerMSec:" + this.iTimerMSec);
-    
+         
   }
   
   public void Update(){
@@ -52,7 +53,7 @@ public class CTimerLabel extends CLabel{
         CLogger.Error("[CTimer.Update()]timer handler is null.");
       }
       
-      CLogger.Debug("[CTimer.Update()]TimeIsUp. iTag: " + iTag + " iTimerMSec: " + iTimerMSec);
+      CLogger.Debug("[CTimer.Update()]TimeIsUp. : " + iTag + " iTimerMSec: " + iTimerMSec);
       this.bIsAlive = false;
       this.handler.TimeIsUp(iTag);
       
@@ -73,6 +74,7 @@ public class CTimerLabel extends CLabel{
     }
     
 //    CLogger.Debug("[CTimer.Draw()] after Draw, timerSec:" + this.iTimerMSec+ " strText: " +this.strText);
+
   }
 }
 

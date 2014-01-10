@@ -57,7 +57,7 @@ class CPageCapture extends CScene implements ITimerHandler{
     //@attn: irene
     //This is the line that is essential, always call parent's function when you overwrite them
     super.Draw();
-
+    
    
     this.fCaptureTime = this.fStartTime - millis()/1000;
     
@@ -77,6 +77,7 @@ class CPageCapture extends CScene implements ITimerHandler{
     
   }
   
+    
   //CTimer callback
   public void TimeIsUp(int iTag){
     this.canvas.SaveDrawing();

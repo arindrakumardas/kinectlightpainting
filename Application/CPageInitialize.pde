@@ -29,7 +29,7 @@ class CPageInitialize extends CScene implements ITimerHandler {
     testLabel.SetPosition(width/2, 20);
     this.AddChild(testLabel);
 
-
+    
     CTimerLabel countdownTimer = new CTimerLabel(this); //count down 4sec
     countdownTimer.Init();
     countdownTimer.iTag = 1;
@@ -40,6 +40,14 @@ class CPageInitialize extends CScene implements ITimerHandler {
     this.AddChild(countdownTimer);
     countdownTimer.StartTimer(iInitialTime);
     
+  //Create button
+    CButton redTimer = new CButton("redTimer.png"); //change to another image
+    redTimer.Init();
+    redTimer.SetPosition(100, 30);
+    redTimer.cCol=color(255,0);
+    this.AddChild(redTimer); 
+    
+
     //another timer to trigger GotoPageCapture when above is done
     //will be triggered when the countdownTimer is done
     //this is done here because we cannot call AddChild inside Draw().
@@ -50,7 +58,7 @@ class CPageInitialize extends CScene implements ITimerHandler {
     this.animationTimer.bDisplayLabel = false;
     this.AddChild(this.animationTimer);
 
-
+   //player1.loop();
     return true;
   }
 
@@ -73,12 +81,12 @@ class CPageInitialize extends CScene implements ITimerHandler {
                                                 ;
                                                 */
 
+
   }
 
   //CTimer callback
   public void TimeIsUp(int iTag) {
     CLogger.Debug("[CPageInitialize.TimeIsUp] timerTag: " + iTag);
-    
     if(iTag == 1){
       //play shutter animation
       
@@ -95,5 +103,7 @@ class CPageInitialize extends CScene implements ITimerHandler {
       g_pageController.GotoPageCapture();
     }
   }
+  
 }
+
 

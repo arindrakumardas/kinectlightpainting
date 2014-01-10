@@ -9,13 +9,14 @@ class CPageDisplay extends CScene implements IButtonHandler {
   protected final int TAG_HOME_BTN = 1;
   protected final int TAG_REFRESH_BTN = 2;
   
+  
+  
   PImage imgRecordedDrawing = null;
   
   
   CPageDisplay() {
     super();
   }
-
   boolean Init() {
     if (!super.Init()) {
       return false;
@@ -71,9 +72,12 @@ class CPageDisplay extends CScene implements IButtonHandler {
     return true;
   }
   
+  
   public void Draw(){
     super.Draw();
     g_inputManager.DrawAllCursor();
+    
+    player.play();
     
     image(this.imgRecordedDrawing, width/2,height/2);
     
