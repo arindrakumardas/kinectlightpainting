@@ -45,7 +45,9 @@ class CPageCapture extends CScene implements ITimerHandler{
     this.canvas = new CCanvas();
     this.canvas.Init(true);
     this.AddChild(this.canvas);
-    
+
+    fStartTime = millis()/1000;
+    //ResetTime(fStartTime);
 
     return true;
   }
@@ -60,8 +62,7 @@ class CPageCapture extends CScene implements ITimerHandler{
     fill(255, 0, 0, 100);
     ellipse(50, 50, 30, 30); 
 
-   
-    this.fCaptureTime = this.fStartTime - millis()/1000;
+    this.fCaptureTime = millis()/1000 - this.fStartTime;
     
     if (this.fCaptureTime%2 == 1) {
       fill(255, 0, 0, 200);
@@ -70,20 +71,13 @@ class CPageCapture extends CScene implements ITimerHandler{
     else {
       fill(0);
       ellipse(50, 50, 18, 18);
-    }
-/*    if (this.fCaptureTime == 0) {
-      //this should be done at CTimer callback
-//      g_pageController.GotoPageDisplay();
-    }
- */    
-    
+    }   
   }
-  
+    
   //CTimer callback
   public void TimeIsUp(int iTag){
     this.canvas.SaveDrawing();
     g_pageController.GotoPageDisplay();
-    
   }
 }
 
