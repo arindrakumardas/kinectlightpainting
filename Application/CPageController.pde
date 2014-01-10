@@ -22,13 +22,6 @@ public class CPageController{
     curPage.Init();
   }
   
-  void GotoPageInitialize(){
-    CLogger.Info("CPageController.CPageInitialize");
-    ResetCP5Controller();
-    curPage = new CPageInitialize();
-    curPage.Init();
-  }
-  
   void ResetCP5Controller(){
         
     for(ControllerInterface controllerObj : g_cp5Controller.getAll()){

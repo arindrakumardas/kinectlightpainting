@@ -62,7 +62,7 @@ class CPageIdle extends CScene implements IButtonHandler {
   // Implementing IButtonHanlder callback
   public void OnButtonSelected(int iBtnTag) {
     CLogger.Info("[CPageIdle.OnButtonSelected] button selected. buttonTag: " + iBtnTag);
-    g_pageController.GotoPageInitialize();
+    g_pageController.GotoPageCapture();
   }
 }
 
