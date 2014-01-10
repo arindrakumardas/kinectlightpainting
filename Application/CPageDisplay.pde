@@ -17,11 +17,14 @@ class CPageDisplay extends CScene implements IButtonHandler {
   }
 
   boolean Init() {
+    
     if (!super.Init()) {
       return false;
     }
 
     CLogger.Debug("[CPageDisplay.Init]");
+    CameraShutterSound.rewind();
+    CameraShutterSound.play();
 
     //Init drawable components inside CLayer
     CLabel testLabel = new CLabel("This is PageDisplay");  
@@ -74,10 +77,8 @@ class CPageDisplay extends CScene implements IButtonHandler {
   public void Draw(){
     super.Draw();
     g_inputManager.DrawAllCursor();
-    
-    CameraShutterSound.play();
     image(this.imgRecordedDrawing, width/2,height/2);
-    
+          
   }
   
 //  public void ControlEventHandler(ControlEvent theEvent) {
@@ -103,4 +104,3 @@ class CPageDisplay extends CScene implements IButtonHandler {
     
   }
 }
-

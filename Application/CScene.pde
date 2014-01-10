@@ -29,6 +29,7 @@ class CScene extends CLayer{
   }
   
   void Draw(){
+    
     background(0); //set background 0 to reset the scene bg all the time
     super.Draw();
     
