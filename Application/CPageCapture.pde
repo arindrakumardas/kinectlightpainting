@@ -32,9 +32,6 @@ class CPageCapture extends CScene implements ITimerHandler{
     testLabel.SetPosition(width/2, 20);
     this.AddChild(testLabel);
 
-    //Create red light indicator
-    fill(255, 0, 0, 100);
-    ellipse(50, 50, 30, 30); 
 //    CTimer captureTime = new CTimer(fStartTime);
     CTimerLabel countdownTimer = new CTimerLabel(this); //count down 6sec
     countdownTimer.Init();
@@ -57,6 +54,11 @@ class CPageCapture extends CScene implements ITimerHandler{
     //@attn: irene
     //This is the line that is essential, always call parent's function when you overwrite them
     super.Draw();
+  
+    noStroke();
+    //Create red light indicator
+    fill(255, 0, 0, 100);
+    ellipse(50, 50, 30, 30); 
 
    
     this.fCaptureTime = this.fStartTime - millis()/1000;
