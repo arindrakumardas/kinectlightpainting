@@ -12,6 +12,12 @@
 import SimpleOpenNI.*;
 import java.util.*;
 import controlP5.*;
+import ddf.minim.spi.*;
+import ddf.minim.signals.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.ugens.*;
+import ddf.minim.effects.*;
 
 
 
@@ -26,9 +32,17 @@ CInputManager g_inputManager = null; //this is a singleton
 ControlP5 g_cp5Controller = null;
 
 
+// For sound
+AudioPlayer CameraShutterSound;
+Minim minim;//audio context
+
 void setup() {
   size(640, 480); //size of the sketch
   background(0, 0, 0);
+  
+  //Sound
+  minim = new Minim(this);
+  CameraShutterSound = minim.loadFile("CameraShutterSound.mp3");
 
   //Init PageController
   g_pageController = new CPageController();

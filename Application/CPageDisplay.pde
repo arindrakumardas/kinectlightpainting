@@ -75,6 +75,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
     super.Draw();
     g_inputManager.DrawAllCursor();
     
+    CameraShutterSound.play();
     image(this.imgRecordedDrawing, width/2,height/2);
     
   }
