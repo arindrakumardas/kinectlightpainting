@@ -46,8 +46,7 @@ class CPageCapture extends CScene implements ITimerHandler{
     this.canvas.Init(true);
     this.AddChild(this.canvas);
 
-    fStartTime = millis()/1000;
-    //ResetTime(fStartTime);
+    fStartTime = millis()/1000;    //this is reseting the timer every time you go to PageCapture
 
     return true;
   }
