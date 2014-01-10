@@ -28,7 +28,7 @@ class CPageIdle extends CScene implements IButtonHandler {
     //Create button
 //    CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
     CButton startButton = new CButton("start.png"); //change to another image
-    startButton.Init(width - 100, 30, "Start capturing");
+    startButton.Init(width - 75, height/7, "Start capturing");
     startButton.SetHandler(this);
     this.AddChild(startButton); //the CButton is added by CP5 so no need to be added to the Layer
 
@@ -38,7 +38,7 @@ class CPageIdle extends CScene implements IButtonHandler {
     //Create label for start button
     CLabel startLabel = new CLabel("Start capturing");
     startLabel.fFontSize = 8;
-    startLabel.SetPosition(width-75, 30+60);    //(-75,60) is the distance from position, for this I'm not writing 90 instead
+    startLabel.SetPosition(width-75, height/7+35);    //(-100,30) is the distance from position, for this I'm not writing 90 instead
     this.AddChild(startLabel); 
 
     //Create canvas (create canvas after because the cursor can be drawn over the above ui compoment)

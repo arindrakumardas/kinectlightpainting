@@ -97,7 +97,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
 
   public void Draw() {
     //FIXME: uncomment below will lead to null pointer exception
-//    super.Draw();
+    //    super.Draw();
     this.Update();
 
     //Draw button according to ButtonOver state
@@ -112,14 +112,12 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
       //      CLogger.Debug("[CButton.Draw()] ButtonOverTime: "+ iButtonOverTime + " Over %: " +  float(iButtonOverTime) / float(SELECT_BUTTON_REQUIRED_TIME));
 
       noStroke();
-      fill(color(255, 255, 0, 100));
+      fill(color(0, 255, 0, 100));
       arc(this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize, -HALF_PI, fArcEndAngle, PIE);
     } 
     else {
       image(imgNormalImage, this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize);
     }
-    
-    
   }
 
   public boolean IsButtonOver() {

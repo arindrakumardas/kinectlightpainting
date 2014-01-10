@@ -34,7 +34,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
     CButton refreshButton = new CButton("refresh.png"); //change to another image
     refreshButton.Init();
     refreshButton.SetHandler(this);
-    refreshButton.SetPosition(width - 100, 30);
+    refreshButton.SetPosition(width - 75, height/7);
     refreshButton.strBtnCaption = "Start over";
     refreshButton.iTag = TAG_REFRESH_BTN;
     this.AddChild(refreshButton); 
@@ -43,7 +43,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
     //Create label for refresh button
     CLabel refreshLabel = new CLabel("Start over");
     refreshLabel.fFontSize = 8;
-    refreshLabel.SetPosition(width-75, 30+60);
+    refreshLabel.SetPosition(width-75, height/7+35);
     this.AddChild(refreshLabel);
  
 
@@ -52,7 +52,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
     CButton homeButton = new CButton("home.png"); //change to another image
     homeButton.Init();
     homeButton.SetHandler(this);
-    homeButton.SetPosition(width - 100, 350);
+    homeButton.SetPosition(width - 75, height-height/5);
     homeButton.strBtnCaption = "Go to Home";
     homeButton.iTag = TAG_HOME_BTN;
     this.AddChild(homeButton); 
@@ -61,7 +61,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
     //Create label for home button
       CLabel homeLabel = new CLabel("Home screen");
       homeLabel.fFontSize = 8;
-      homeLabel.SetPosition(width-75, 350+60);
+      homeLabel.SetPosition(width-75, height-height/5+35);
       this.AddChild(homeLabel);
       
       
