@@ -18,7 +18,7 @@ import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.ugens.*;
 import ddf.minim.effects.*;
-
+import gifAnimation.*;
 
 
 CPageController g_pageController = null; //this is a singleton
@@ -37,7 +37,10 @@ AudioPlayer CameraShutterSound;
 AudioPlayer CameraBeepSound;
 Minim minim;//audio context
 
-
+//For animation
+PImage[] animation;
+Gif loopingGif;
+boolean pause = false;
 
 void setup() {
   size(640, 480); //size of the sketch
@@ -47,6 +50,10 @@ void setup() {
   minim = new Minim(this);
   CameraShutterSound = minim.loadFile("CameraShutterSound.mp3");
   CameraBeepSound = minim.loadFile("BeepSound.mp3");
+
+  //Animation
+  loopingGif = new Gif(this, "giphy.gif");
+  loopingGif.loop();
 
   //Init PageController
   g_pageController = new CPageController();

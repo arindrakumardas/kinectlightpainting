@@ -61,7 +61,6 @@ class CPageCapture extends CScene implements ITimerHandler{
     //Create red light indicator
     fill(255, 0, 0, 100);
     ellipse(width - 75, height/7, 30, 30); 
-    
     this.fCaptureTime = millis()/1000 - this.fStartTime;
     
    //Create record label

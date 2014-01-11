@@ -66,12 +66,8 @@ class CPageDisplay extends CScene implements IButtonHandler {
       homeLabel.fFontSize = 12;
       homeLabel.SetPosition(width-75, height/3+40);
       this.AddChild(homeLabel);
-      
-      
       this.imgRecordedDrawing = loadImage(Configs.SAVED_DRAWING_FILEPATH);
-
-
-    return true;
+      return true;
   }
   
   public void Draw(){

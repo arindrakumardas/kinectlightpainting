@@ -6,6 +6,14 @@
  */
 
 class CPageIdle extends CScene implements IButtonHandler {
+  
+  
+//    public void Draw(){
+//    background(255 / (float)height * mouseY);
+//    image(loopingGif, 10, height / 2 - loopingGif.height / 2);
+//    }
+
+  
   CPageIdle() {
     super();
   }
@@ -25,7 +33,7 @@ class CPageIdle extends CScene implements IButtonHandler {
     */
 
     //Create button
-//    CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
+    //CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
     CButton startButton = new CButton("start.png"); //change to another image
     startButton.Init(width - 75, height/7, "Start capturing");
     startButton.SetHandler(this);
@@ -44,10 +52,12 @@ class CPageIdle extends CScene implements IButtonHandler {
     CCanvas canvas = new CCanvas();
     canvas.Init();
     this.AddChild(canvas);
-
     return true;
   }
-
+  
+  
+    
+  
 
 //  public void ControlEventHandler(ControlEvent theEvent) {
 //    CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
@@ -63,5 +73,9 @@ class CPageIdle extends CScene implements IButtonHandler {
     CLogger.Info("[CPageIdle.OnButtonSelected] button selected. buttonTag: " + iBtnTag);
     g_pageController.GotoPageCapture();
   }
+  
+
+  
 }
+
 
