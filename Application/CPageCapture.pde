@@ -25,8 +25,9 @@ class CPageCapture extends CScene implements ITimerHandler{
     }
 
     CLogger.Debug("[CPageCapture.Init]");
-   // CameraBeepSound.rewind();
-    //CameraBeepSound.play();
+    CameraFocusSound.play();
+    CameraFocusSound.rewind();
+    
 
     //Init drawable components inside CLayer
   /*  CLabel testLabel = new CLabel("This is PageCapture");  
@@ -42,6 +43,7 @@ class CPageCapture extends CScene implements ITimerHandler{
 //    countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
     this.AddChild(countdownTimer);
     countdownTimer.StartTimer(iExposureTime);
+    delay(1000);
     
     //Create canvas (create canvas after because the cursor can be drawn over the above ui compoment)
     this.canvas = new CCanvas();
@@ -74,13 +76,13 @@ class CPageCapture extends CScene implements ITimerHandler{
     if (this.fCaptureTime%2 == 1) {
       fill(255, 0, 0, 200);
       ellipse(width - 75, height/7, 18, 18); 
-      CameraBeepSound.play();
-      CameraBeepSound.rewind();
-      CameraBeepSound.mute();
+      CameraBeepSound.unmute();
       CLogger.Debug("Vintage");
     } 
     else {
-      CameraBeepSound.unmute();
+      CameraBeepSound.play();
+      CameraBeepSound.rewind();
+      CameraBeepSound.mute();
       fill(0);
       ellipse(width - 75, height/7, 18, 18);
     }   
