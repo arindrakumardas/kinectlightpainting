@@ -34,6 +34,7 @@ ControlP5 g_cp5Controller = null;
 
 // For sound
 AudioPlayer CameraShutterSound;
+AudioPlayer CameraBeepSound;
 Minim minim;//audio context
 
 
@@ -45,6 +46,7 @@ void setup() {
   //Sound
   minim = new Minim(this);
   CameraShutterSound = minim.loadFile("CameraShutterSound.mp3");
+  CameraBeepSound = minim.loadFile("BeepSound.mp3");
 
   //Init PageController
   g_pageController = new CPageController();

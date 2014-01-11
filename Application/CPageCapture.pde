@@ -55,7 +55,8 @@ class CPageCapture extends CScene implements ITimerHandler{
     //@attn: irene
     //This is the line that is essential, always call parent's function when you overwrite them
     super.Draw();
-  
+    CameraBeepSound.play();
+    CameraBeepSound.rewind();
     noStroke();
     //Create red light indicator
     fill(255, 0, 0, 100);
