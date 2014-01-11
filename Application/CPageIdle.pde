@@ -58,12 +58,12 @@ class CPageIdle extends CScene implements IButtonHandler {
 //  }
 
 
-    public void Draw(){
+  /*  public void Draw(){
     super.Draw();
     g_inputManager.DrawAllCursor();
     image(HandCalibration, width/2-30, HandCalibration.height / 2);
     }
-
+*/
 
   // Implementing IButtonHanlder callback
   public void OnButtonSelected(int iBtnTag) {
