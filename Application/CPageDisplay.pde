@@ -73,8 +73,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
   public void Draw(){
     super.Draw();
     g_inputManager.DrawAllCursor();
-    image(this.imgRecordedDrawing, width/2,height/2);
-          
+    image(this.imgRecordedDrawing, width/2,height/2);      
   }
   
 //  public void ControlEventHandler(ControlEvent theEvent) {
