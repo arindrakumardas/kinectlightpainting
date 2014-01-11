@@ -24,8 +24,6 @@ class CPageIdle extends CScene implements IButtonHandler {
     this.AddChild(testLabel);
     */
 
-
-
     //Create button
 //    CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
     CButton startButton = new CButton("start.png"); //change to another image

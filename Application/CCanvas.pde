@@ -28,7 +28,7 @@ public class CCanvas extends CNode implements IDrawable {
     this.iWidth = int(width*0.8);
     this.iHeight = int(height*1);
     this.cptAnchorPoint = new CPoint(0.5, 0.5);
-    this.SetPosition(width*0.4, height*0.5); //always placed in the middle of the sketch
+    this.SetPosition(width*0.4, height*0.5); //always placed in the middle of the sketch //@arindra changed to match styles
   }
 
   boolean Init() {
