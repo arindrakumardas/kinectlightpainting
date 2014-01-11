@@ -25,6 +25,8 @@ class CPageCapture extends CScene implements ITimerHandler{
     }
 
     CLogger.Debug("[CPageCapture.Init]");
+    CameraBeepSound.rewind();
+    CameraBeepSound.play();
 
     //Init drawable components inside CLayer
   /*  CLabel testLabel = new CLabel("This is PageCapture");  
@@ -71,11 +73,7 @@ class CPageCapture extends CScene implements ITimerHandler{
     
     if (this.fCaptureTime%2 == 1) {
       fill(255, 0, 0, 200);
-      ellipse(width - 75, height/7, 18, 18);
-      CameraBeepSound.play();
-      CameraBeepSound.rewind();
-   
- 
+      ellipse(width - 75, height/7, 18, 18);  
     } 
     else {
       fill(0);

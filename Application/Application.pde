@@ -39,7 +39,7 @@ Minim minim;//audio context
 
 //For animation
 PImage[] animation;
-Gif loopingGif;
+Gif HandCalibration;
 boolean pause = false;
 
 void setup() {
@@ -52,8 +52,8 @@ void setup() {
   CameraBeepSound = minim.loadFile("BeepSound.mp3");
 
   //Animation
-  loopingGif = new Gif(this, "giphy.gif");
-  loopingGif.loop();
+  HandCalibration = new Gif(this, "giphy.gif");
+  HandCalibration.loop();
 
   //Init PageController
   g_pageController = new CPageController();

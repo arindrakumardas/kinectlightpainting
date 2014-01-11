@@ -8,12 +8,6 @@
 class CPageIdle extends CScene implements IButtonHandler {
   
   
-//    public void Draw(){
-//    background(255 / (float)height * mouseY);
-//    image(loopingGif, 10, height / 2 - loopingGif.height / 2);
-//    }
-
-  
   CPageIdle() {
     super();
   }
@@ -54,10 +48,6 @@ class CPageIdle extends CScene implements IButtonHandler {
     this.AddChild(canvas);
     return true;
   }
-  
-  
-    
-  
 
 //  public void ControlEventHandler(ControlEvent theEvent) {
 //    CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
@@ -66,6 +56,13 @@ class CPageIdle extends CScene implements IButtonHandler {
 //      g_pageController.GotoPageInitialize();
 //    }
 //  }
+
+
+    public void Draw(){
+    super.Draw();
+    g_inputManager.DrawAllCursor();
+    image(HandCalibration, width/2-30, HandCalibration.height / 2);
+    }
 
 
   // Implementing IButtonHanlder callback
