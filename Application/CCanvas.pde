@@ -25,10 +25,10 @@ public class CCanvas extends CNode implements IDrawable {
     //size is a global function which will change the settings of the application, only use it in Application.pde.
     //     size(this.iX, this.iY); 
 
-    this.iWidth = int(width*0.7);
-    this.iHeight = int(height*0.7);
+    this.iWidth = int(width*0.8);
+    this.iHeight = int(height*1);
     this.cptAnchorPoint = new CPoint(0.5, 0.5);
-    this.SetPosition(width*0.5, height*0.6); //always placed in the middle of the sketch
+    this.SetPosition(width*0.4, height*0.5); //always placed in the middle of the sketch
   }
 
   boolean Init() {

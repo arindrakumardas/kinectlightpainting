@@ -27,11 +27,11 @@ class CPageDisplay extends CScene implements IButtonHandler {
     CameraShutterSound.play();
 
     //Init drawable components inside CLayer
-    CLabel testLabel = new CLabel("This is PageDisplay");  
+  /*  CLabel testLabel = new CLabel("This is PageDisplay");  
     testLabel.fFontSize = 20;
     testLabel.SetPosition(width/2, 20);
     this.AddChild(testLabel);
-
+*/
     //Create button
 //    CButton refreshButton = new CButton("RefreshBtn", width - 100, 30, "refresh.png", "refresh-neg.png", "Start over"); //change to another image
     CButton refreshButton = new CButton("refresh.png"); //change to another image
