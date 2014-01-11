@@ -25,8 +25,8 @@ class CPageCapture extends CScene implements ITimerHandler{
     }
 
     CLogger.Debug("[CPageCapture.Init]");
-    CameraBeepSound.rewind();
-    CameraBeepSound.play();
+   // CameraBeepSound.rewind();
+    //CameraBeepSound.play();
 
     //Init drawable components inside CLayer
   /*  CLabel testLabel = new CLabel("This is PageCapture");  
@@ -57,8 +57,8 @@ class CPageCapture extends CScene implements ITimerHandler{
     //@attn: irene
     //This is the line that is essential, always call parent's function when you overwrite them
     super.Draw();
-   // CameraBeepSound.play();
-   // CameraBeepSound.rewind();
+
+    
     noStroke();
     //Create red light indicator
     fill(255, 0, 0, 100);
@@ -73,9 +73,14 @@ class CPageCapture extends CScene implements ITimerHandler{
     
     if (this.fCaptureTime%2 == 1) {
       fill(255, 0, 0, 200);
-      ellipse(width - 75, height/7, 18, 18);  
+      ellipse(width - 75, height/7, 18, 18); 
+      CameraBeepSound.play();
+      CameraBeepSound.rewind();
+      CameraBeepSound.mute();
+      CLogger.Debug("Vintage");
     } 
     else {
+      CameraBeepSound.unmute();
       fill(0);
       ellipse(width - 75, height/7, 18, 18);
     }   
@@ -88,4 +93,3 @@ class CPageCapture extends CScene implements ITimerHandler{
     delay(400);
   }
 }
-

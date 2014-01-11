@@ -1,3 +1,5 @@
+import gifAnimation.*;
+
 /* --------------------------------------------------------------------------
  * This is main application program
  * @author:  Gigi Ho
@@ -136,4 +138,3 @@ void onCompletedGesture(SimpleOpenNI curContext, int gestureType, PVector pos)
 {
   g_inputManager.OnCompletedGesture(curContext, gestureType, pos);
 }
-
