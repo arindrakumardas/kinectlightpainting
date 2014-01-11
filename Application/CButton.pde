@@ -112,7 +112,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
       //      CLogger.Debug("[CButton.Draw()] ButtonOverTime: "+ iButtonOverTime + " Over %: " +  float(iButtonOverTime) / float(SELECT_BUTTON_REQUIRED_TIME));
 
       noStroke();
-      fill(color(0, 255, 0, 100));
+      fill(color(255, 0, 0, 100));
       arc(this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize, -HALF_PI, fArcEndAngle, PIE);
     } 
     else {

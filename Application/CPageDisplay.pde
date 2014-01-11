@@ -44,9 +44,9 @@ class CPageDisplay extends CScene implements IButtonHandler {
 
 /* ------------- do you think this can be added in CButton? ----------------------- ire   */    
     //Create label for refresh button
-    CLabel refreshLabel = new CLabel("Start over");
-    refreshLabel.fFontSize = 10;
-    refreshLabel.SetPosition(width-75, height/7+35);
+    CLabel refreshLabel = new CLabel("Start again");
+    refreshLabel.fFontSize = 12;
+    refreshLabel.SetPosition(width-75, height/7+40);
     this.AddChild(refreshLabel);
  
 
@@ -55,16 +55,16 @@ class CPageDisplay extends CScene implements IButtonHandler {
     CButton homeButton = new CButton("home.png"); //change to another image
     homeButton.Init();
     homeButton.SetHandler(this);
-    homeButton.SetPosition(width - 75, height-height/5);
+    homeButton.SetPosition(width - 75, height/3);
     homeButton.strBtnCaption = "Go to Home";
     homeButton.iTag = TAG_HOME_BTN;
     this.AddChild(homeButton); 
     
 /* ------------- also in CButton? ----------------------- ire */    
     //Create label for home button
-      CLabel homeLabel = new CLabel("Home screen");
-      homeLabel.fFontSize = 10;
-      homeLabel.SetPosition(width-75, height-height/5+35);
+      CLabel homeLabel = new CLabel("Home");
+      homeLabel.fFontSize = 12;
+      homeLabel.SetPosition(width-75, height/3+40);
       this.AddChild(homeLabel);
       
       

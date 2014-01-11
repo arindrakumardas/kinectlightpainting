@@ -64,18 +64,18 @@ class CPageCapture extends CScene implements ITimerHandler{
     
     this.fCaptureTime = millis()/1000 - this.fStartTime;
     
-  
+   //Create record label
+    CLabel recordingLabel = new CLabel("RECORDING");
+    recordingLabel.fFontSize = 10;
+    recordingLabel.SetPosition(width-75, height/7+30);
+    this.AddChild(recordingLabel);
     
     if (this.fCaptureTime%2 == 1) {
       fill(255, 0, 0, 200);
       ellipse(width - 75, height/7, 18, 18);
       CameraBeepSound.play();
       CameraBeepSound.rewind();
-         //Create label for refresh button
-    CLabel recordingLabel = new CLabel("Recording");
-    recordingLabel.fFontSize = 10;
-    recordingLabel.SetPosition(width-75, height/7+30);
-    this.AddChild(recordingLabel);
+   
  
     } 
     else {
