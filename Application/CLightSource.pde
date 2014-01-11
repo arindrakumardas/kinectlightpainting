@@ -1,11 +1,11 @@
 public class CLightSource {
   color colLight = 0;
-  float fDefatulSize = 20;
+  float fDefatulSize = 15;
   
   
   
   CLightSource(){
-    this.colLight = color(255, 255, 0, 153);
+    this.colLight = color(255, 255, 255, 153);
     
   }
   

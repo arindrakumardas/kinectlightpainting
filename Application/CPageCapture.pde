@@ -35,7 +35,7 @@ class CPageCapture extends CScene implements ITimerHandler{
 //    CTimer captureTime = new CTimer(fStartTime);
     CTimerLabel countdownTimer = new CTimerLabel(this); //count down 6sec
     countdownTimer.Init();
-    countdownTimer.fFontSize = 20;
+    countdownTimer.fFontSize = 12;
     countdownTimer.SetPosition(width - 75, height/4);
 //    countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
     this.AddChild(countdownTimer);
@@ -74,7 +74,7 @@ class CPageCapture extends CScene implements ITimerHandler{
          //Create label for refresh button
     CLabel recordingLabel = new CLabel("Recording");
     recordingLabel.fFontSize = 10;
-    recordingLabel.SetPosition(width-75, height/7+25);
+    recordingLabel.SetPosition(width-75, height/7+30);
     this.AddChild(recordingLabel);
  
     } 
