@@ -8,7 +8,7 @@
 class CPageCapture extends CScene implements ITimerHandler{
 
   float fCaptureTime;
-  float fStartTime = 10;
+  float fStartTime;
   
   int iExposureTime = 6; //in sec
   
@@ -35,8 +35,8 @@ class CPageCapture extends CScene implements ITimerHandler{
 //    CTimer captureTime = new CTimer(fStartTime);
     CTimerLabel countdownTimer = new CTimerLabel(this); //count down 6sec
     countdownTimer.Init();
-    countdownTimer.fFontSize = 20;
-    countdownTimer.SetPosition(50, 20);
+    countdownTimer.fFontSize = 10;
+    countdownTimer.SetPosition(50, 55);
 //    countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
     this.AddChild(countdownTimer);
     countdownTimer.StartTimer(iExposureTime);
@@ -47,7 +47,7 @@ class CPageCapture extends CScene implements ITimerHandler{
     this.AddChild(this.canvas);
 
     fStartTime = millis()/1000;    //this is reseting the timer every time you go to PageCapture
-
+    
     return true;
   }
    
@@ -71,9 +71,9 @@ class CPageCapture extends CScene implements ITimerHandler{
     else {
       fill(0);
       ellipse(50, 50, 18, 18);
-    }   
+    }    
   }
-    
+      
   //CTimer callback
   public void TimeIsUp(int iTag){
     this.canvas.SaveDrawing();
