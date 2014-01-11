@@ -10,7 +10,7 @@ class CPageCapture extends CScene implements ITimerHandler{
   float fCaptureTime;
   float fStartTime;
   
-  int iExposureTime = 6; //in sec
+  int iExposureTime = 8; //in sec
   
   protected CCanvas canvas = null; 
 
@@ -43,7 +43,7 @@ class CPageCapture extends CScene implements ITimerHandler{
 //    countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
     this.AddChild(countdownTimer);
     countdownTimer.StartTimer(iExposureTime);
-    delay(1000);
+    delay(1500);
     
     //Create canvas (create canvas after because the cursor can be drawn over the above ui compoment)
     this.canvas = new CCanvas();
