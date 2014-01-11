@@ -74,7 +74,7 @@ class CPageCapture extends CScene implements ITimerHandler{
     this.AddChild(recordingLabel);
     
     if (this.fCaptureTime%2 == 1) {
-      fill(255, 0, 0, 200);
+      fill(0);
       ellipse(width - 75, height/7, 18, 18); 
       CameraBeepSound.unmute();
       CLogger.Debug("Vintage");
@@ -83,7 +83,7 @@ class CPageCapture extends CScene implements ITimerHandler{
       CameraBeepSound.play();
       CameraBeepSound.rewind();
       CameraBeepSound.mute();
-      fill(0);
+      fill(255, 0, 0, 200);
       ellipse(width - 75, height/7, 18, 18);
     }   
   }
