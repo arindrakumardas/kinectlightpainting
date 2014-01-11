@@ -18,10 +18,11 @@ class CPageIdle extends CScene implements IButtonHandler {
     CLogger.Debug("[CPageIdle.Init]");
 
     //Init drawable components inside CLayer
-    CLabel testLabel = new CLabel("This is PageIdle");  
+  /* CLabel testLabel = new CLabel("This is PageIdle");  
     testLabel.fFontSize = 20;
     testLabel.SetPosition(width/2, 20);
     this.AddChild(testLabel);
+    */
 
 
 
@@ -37,7 +38,7 @@ class CPageIdle extends CScene implements IButtonHandler {
     // 
     //Create label for start button
     CLabel startLabel = new CLabel("Start capturing");
-    startLabel.fFontSize = 8;
+    startLabel.fFontSize = 10;
     startLabel.SetPosition(width-75, height/7+35);    //(-100,30) is the distance from position, for this I'm not writing 90 instead
     this.AddChild(startLabel); 
 
