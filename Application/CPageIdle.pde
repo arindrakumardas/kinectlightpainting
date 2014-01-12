@@ -33,9 +33,6 @@ class CPageIdle extends CScene implements IButtonHandler {
     startButton.SetHandler(this);
     this.AddChild(startButton); //the CButton is added by CP5 so no need to be added to the Layer
 
-    /* ------------- do you think this can be added in CButton? ----------------------- ire   */
-    /* ------------- yes i think it's good. i tried to add a CLabel as a child in CButton but it's not working yet ----------------------- gg   */
-    // 
     //Create label for start button
     CLabel startLabel = new CLabel("Start capturing");
     startLabel.fFontSize = 12;

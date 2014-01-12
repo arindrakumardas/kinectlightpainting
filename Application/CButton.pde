@@ -1,10 +1,3 @@
-/* --------------------------------------------------------------------------
- * @author:  irene
- * date:  2/1/2014 (m/d/y)
- * ----------------------------------------------------------------------------
- */
-
-
 public class CButton extends CLayer { //this class extends CLayer because it needs to call AddChild()
   public IButtonHandler handler = null;
 
@@ -104,7 +97,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
     imageMode(CENTER);
     if (this.bButtonOver) {
       image(imgSelectedImage, this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize);
-
+       
       //Also draw button selection time arc
       int iButtonOverTime = millis() - iButtonOverStartTime;
       float fArcEndAngle = ((float(iButtonOverTime) / float(SELECT_BUTTON_REQUIRED_TIME)) * 2*PI) - HALF_PI;
@@ -112,7 +105,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
       //      CLogger.Debug("[CButton.Draw()] ButtonOverTime: "+ iButtonOverTime + " Over %: " +  float(iButtonOverTime) / float(SELECT_BUTTON_REQUIRED_TIME));
 
       noStroke();
-      fill(color(255, 0, 0, 100));
+      fill(color(0, 255, 0, 100));
       arc(this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize, -HALF_PI, fArcEndAngle, PIE);
     } 
     else {
