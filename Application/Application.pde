@@ -19,9 +19,7 @@ import ddf.minim.analysis.*;
 import ddf.minim.ugens.*;
 import ddf.minim.effects.*;
 import gifAnimation.*;
-
-Hello World
-
+import processing.video.*;
 
 CPageController g_pageController = null; //this is a singleton
 //IInputController g_inputController = null; //@TODO: remove from global and passing to classes if necessary
