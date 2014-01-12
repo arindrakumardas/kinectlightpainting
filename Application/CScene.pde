@@ -32,6 +32,7 @@ class CScene extends CLayer{
     
     background(0); //set background 0 to reset the scene bg all the time
     super.Draw();
+  //  image(HandCalibration, width/2-30, HandCalibration.height / 2);
     
   }
   

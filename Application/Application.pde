@@ -1,5 +1,3 @@
-import gifAnimation.*;
-
 /* --------------------------------------------------------------------------
  * This is main application program
  * @author:  Gigi Ho
