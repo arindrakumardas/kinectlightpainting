@@ -1,9 +1,12 @@
-/* --------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+ * I THINK THIS PAGE CAN BE DELETED --ire
+ * waiting for Gigi to confirm
+ * ----------------------------------------------------------------------------
  * This is CSprite class, a sprite is an ui object appear on screen with a image / label
  * @author:  irene
  * date:  2/1/2014 (m/d/y)
  * ----------------------------------------------------------------------------
- */
+ 
 
 
 public class CSprite extends CNode implements IDrawable {
@@ -24,3 +27,5 @@ public class CSprite extends CNode implements IDrawable {
   
 }
 
+
+*/

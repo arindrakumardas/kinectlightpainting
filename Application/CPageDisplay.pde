@@ -27,7 +27,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
     CameraShutterSound.play();
 
     //Init drawable components inside CLayer
-  /*  CLabel testLabel = new CLabel("This is PageDisplay");  
+/*  CLabel testLabel = new CLabel("This is PageDisplay");  
     testLabel.fFontSize = 20;
     testLabel.SetPosition(width/2, 20);
     this.AddChild(testLabel);
@@ -42,7 +42,6 @@ class CPageDisplay extends CScene implements IButtonHandler {
     refreshButton.iTag = TAG_REFRESH_BTN;
     this.AddChild(refreshButton); 
 
-/* ------------- do you think this can be added in CButton? ----------------------- ire   */    
     //Create label for refresh button
     CLabel refreshLabel = new CLabel("Start again");
     refreshLabel.fFontSize = 12;
@@ -59,8 +58,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
     homeButton.strBtnCaption = "Go to Home";
     homeButton.iTag = TAG_HOME_BTN;
     this.AddChild(homeButton); 
-    
-/* ------------- also in CButton? ----------------------- ire */    
+   
     //Create label for home button
       CLabel homeLabel = new CLabel("Home");
       homeLabel.fFontSize = 12;

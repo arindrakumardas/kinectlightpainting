@@ -9,7 +9,6 @@ class CPageCapture extends CScene implements ITimerHandler{
 
   float fCaptureTime;
   float fStartTime;
-  
   int iExposureTime = 8; //in sec
   
   protected CCanvas canvas = null; 
@@ -30,7 +29,7 @@ class CPageCapture extends CScene implements ITimerHandler{
     
 
     //Init drawable components inside CLayer
-  /*  CLabel testLabel = new CLabel("This is PageCapture");  
+/*  CLabel testLabel = new CLabel("This is PageCapture");  
     testLabel.fFontSize = 20;
     testLabel.SetPosition(width/2, 20);
     this.AddChild(testLabel);
@@ -45,12 +44,14 @@ class CPageCapture extends CScene implements ITimerHandler{
     countdownTimer.StartTimer(iExposureTime);
     delay(1500);
     
+    fStartTime = millis()/1000;    //this is reseting the timer every time you go to PageCapture    
+    
     //Create canvas (create canvas after because the cursor can be drawn over the above ui compoment)
     this.canvas = new CCanvas();
     this.canvas.Init(true);
     this.AddChild(this.canvas);
 
-    fStartTime = millis()/1000;    //this is reseting the timer every time you go to PageCapture
+
     
     return true;
   }
@@ -60,7 +61,6 @@ class CPageCapture extends CScene implements ITimerHandler{
     //This is the line that is essential, always call parent's function when you overwrite them
     super.Draw();
 
-    
     noStroke();
     //Create red light indicator
     fill(255, 0, 0, 100);

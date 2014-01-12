@@ -1,10 +1,3 @@
-/* --------------------------------------------------------------------------
- * @author:  irene
- * date:  2/1/2014 (m/d/y)
- * ----------------------------------------------------------------------------
- */
-
-
 public class CButton extends CLayer { //this class extends CLayer because it needs to call AddChild()
   public IButtonHandler handler = null;
 
