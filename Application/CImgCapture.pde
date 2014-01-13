@@ -1,7 +1,7 @@
-/* -------------------------- This is not working ----------------------------  
+/* -------------------------- This is not working ---------------------------- */
 public class CImgCapture extends CScene implements ITimerHandler {
-  //protected CCanvas canvas = null;
-   protected Capture imgCapture ;
+  protected CCanvas canvas = null;
+  protected Capture imgCapture = null;
 
   CImgCapture() {
     super();
@@ -14,8 +14,8 @@ public class CImgCapture extends CScene implements ITimerHandler {
 
     CLogger.Debug("[CImgCapture.Init]");
 
-    imgCapture = new Capture ();
-    imgCapture.start();
+    this.imgCapture = new Capture(Application.this);
+    this.imgCapture.start();
 
     //Create canvas (create canvas after because the cursor can be drawn over the above ui compoment)
     this.canvas = new CCanvas();
@@ -29,7 +29,7 @@ public class CImgCapture extends CScene implements ITimerHandler {
     super.Draw();
 
     if (this.imgCapture.available()) {
-      tint(100); //for darker image    
+      tint(50); //for darker image    
       this.imgCapture.read();
       this.imgCapture.filter(GRAY);
     }
@@ -39,8 +39,8 @@ public class CImgCapture extends CScene implements ITimerHandler {
   //CTimer callback
   public void TimeIsUp(int iTag) {
     this.imgCapture.stop();
-    this.imgCapture.saveFrame("photo.jpg");
+    saveFrame("photo.jpg");
     //this.canvas.SaveDrawing();
   }
 }
-*/
+

@@ -6,8 +6,9 @@
  */
 
 class CPageIdle extends CScene implements IButtonHandler {
-  
-  
+
+  PImage imgBackground;
+
   CPageIdle() {
     super();
   }
@@ -20,11 +21,11 @@ class CPageIdle extends CScene implements IButtonHandler {
     CLogger.Debug("[CPageIdle.Init]");
 
     //Init drawable components inside CLayer
-  /* CLabel testLabel = new CLabel("This is PageIdle");  
-    testLabel.fFontSize = 20;
-    testLabel.SetPosition(width/2, 20);
-    this.AddChild(testLabel);
-    */
+    /* CLabel testLabel = new CLabel("This is PageIdle");  
+     testLabel.fFontSize = 20;
+     testLabel.SetPosition(width/2, 20);
+     this.AddChild(testLabel);
+     */
 
     //Create button
     //CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
@@ -43,33 +44,32 @@ class CPageIdle extends CScene implements IButtonHandler {
     CCanvas canvas = new CCanvas();
     canvas.Init();
     this.AddChild(canvas);
+
+    imgBackground = loadImage("shutter.jpg");
+
     return true;
   }
 
-//  public void ControlEventHandler(ControlEvent theEvent) {
-//    CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
-//
-//    if (theEvent.getName() == "StartBtn") {
-//      g_pageController.GotoPageInitialize();
-//    }
-//  }
+  //  public void ControlEventHandler(ControlEvent theEvent) {
+  //    CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
+  //
+  //    if (theEvent.getName() == "StartBtn") {
+  //      g_pageController.GotoPageInitialize();
+  //    }
+  //  }
 
 
-  /*  public void Draw(){
+  public void Draw() {
     super.Draw();
+    image(imgBackground, width*0.4, height*0.5, width*0.8, height);
     g_inputManager.DrawAllCursor();
-    image(HandCalibration, width/2-30, HandCalibration.height / 2);
-    }
-*/
+    //  image(HandCalibration, width/2-30, HandCalibration.height / 2);
+  }
 
   // Implementing IButtonHanlder callback
   public void OnButtonSelected(int iBtnTag) {
     CLogger.Info("[CPageIdle.OnButtonSelected] button selected. buttonTag: " + iBtnTag);
     g_pageController.GotoPageCapture();
   }
-  
-
-  
 }
-
 
