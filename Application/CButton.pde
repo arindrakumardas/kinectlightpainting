@@ -21,7 +21,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
     //    this.SetPosition(fPosX, fPosY);
   }
 
-  CButton (String strNormalImgPath, String strSelectedImgPath) {
+/*  CButton (String strNormalImgPath, String strSelectedImgPath) {
     super();
     this.imgNormalImage = loadImage(strNormalImgPath);
     this.imgNormalImage.resize(int(fBtnSize), int(fBtnSize));
@@ -29,6 +29,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
     this.imgSelectedImage.resize(int(fBtnSize), int(fBtnSize));
     //    this.SetPosition(fPosX, fPosY);
   }
+*/
 
   public boolean Init() {
     return this.Init(0, 0, null);
@@ -90,7 +91,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
 
   public void Draw() {
     //FIXME: uncomment below will lead to null pointer exception
-    //    super.Draw();
+    //super.Draw();
     this.Update();
 
     //Draw button according to ButtonOver state
@@ -98,10 +99,11 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
     
     if (this.bButtonOver) {
 
+      // highlight button choice
       fill(255, 255, 255, 200);
       ellipse(this.GetPositionX(), this.GetPositionY(), this.fBtnSize+10, this.fBtnSize+10);
       image(imgSelectedImage, this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize);
-
+      // insert click sound
       ClickSound.play();
       ClickSound.rewind();
 

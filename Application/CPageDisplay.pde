@@ -44,9 +44,9 @@ class CPageDisplay extends CScene implements IButtonHandler {
 
     //Create label for refresh button
     CLabel refreshLabel = new CLabel("Start again");
-    refreshLabel.fFontSize = 18;
+    refreshLabel.fFontSize = 14;
     textFont(SegoeUIFont);
-    refreshLabel.cFontColor = color(255, 102, 0);
+//    refreshLabel.cFontColor = color(255, 102, 0);
     refreshLabel.SetPosition(width-65, height/4+45);
     this.AddChild(refreshLabel);
  
@@ -63,9 +63,9 @@ class CPageDisplay extends CScene implements IButtonHandler {
    
     //Create label for home button
       CLabel homeLabel = new CLabel("Home");
-      homeLabel.fFontSize = 18;
+      homeLabel.fFontSize = 14;
       textFont(SegoeUIFont);
-      homeLabel.cFontColor = color(255, 102, 0);
+//      homeLabel.cFontColor = color(255, 102, 0);
       homeLabel.SetPosition(width-65, height/2+95);
       this.AddChild(homeLabel);
       this.imgRecordedDrawing = loadImage(Configs.SAVED_DRAWING_FILEPATH);
