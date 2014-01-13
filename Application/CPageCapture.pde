@@ -37,8 +37,8 @@ class CPageCapture extends CScene implements ITimerHandler{
 //    CTimer captureTime = new CTimer(fStartTime);
     CTimerLabel countdownTimer = new CTimerLabel(this); //count down 6sec
     countdownTimer.Init();
-    countdownTimer.fFontSize = 12;
-    countdownTimer.SetPosition(width - 75, height/4);
+    countdownTimer.fFontSize = 40;
+    countdownTimer.SetPosition(width - 75, height/3);
 //    countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
     this.AddChild(countdownTimer);
     countdownTimer.StartTimer(iExposureTime);
