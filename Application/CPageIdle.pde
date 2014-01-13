@@ -34,10 +34,10 @@ class CPageIdle extends CScene implements IButtonHandler {
     this.AddChild(startButton); //the CButton is added by CP5 so no need to be added to the Layer
 
     //Create label for start button
-    CLabel startLabel = new CLabel("Press to Start");
-    startLabel.fFontSize = 18;
+    CLabel startLabel = new CLabel("Start capturing");
+    startLabel.fFontSize = 14;
     textFont(SegoeUIFont);
-    startLabel.cFontColor = color(255, 102, 0);
+//    startLabel.cFontColor = color(255, 102, 0);
     startLabel.SetPosition(width-65, height/2+30);    //(-100,30) is the distance from position, for this I'm not writing 90 instead
     this.AddChild(startLabel); 
 
@@ -48,9 +48,9 @@ class CPageIdle extends CScene implements IButtonHandler {
     this.AddChild(canvas);
     
     //Message Label
-    CLabel messageLabel = new CLabel("This page is not recorded");  
+    CLabel messageLabel = new CLabel("Touch the button to start your Light Painting experience...");  
     messageLabel.fFontSize = 18;
-    messageLabel.SetPosition(width/3+30, 30);
+    messageLabel.SetPosition(width/3+30, height/2+5);
     this.AddChild(messageLabel);
     return true;
  

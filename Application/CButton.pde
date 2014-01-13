@@ -95,8 +95,15 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
 
     //Draw button according to ButtonOver state
     imageMode(CENTER);
+    
     if (this.bButtonOver) {
+
+      fill(255, 255, 255, 200);
+      ellipse(this.GetPositionX(), this.GetPositionY(), this.fBtnSize+10, this.fBtnSize+10);
       image(imgSelectedImage, this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize);
+
+      ClickSound.play();
+      ClickSound.rewind();
 
       //Also draw button selection time arc
       int iButtonOverTime = millis() - iButtonOverStartTime;
@@ -105,7 +112,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
       //      CLogger.Debug("[CButton.Draw()] ButtonOverTime: "+ iButtonOverTime + " Over %: " +  float(iButtonOverTime) / float(SELECT_BUTTON_REQUIRED_TIME));
 
       noStroke();
-      fill(color(255, 0, 0, 100));
+      fill(color(0, 255, 0, 100));
       arc(this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize, -HALF_PI, fArcEndAngle, PIE);
     } 
     else {
@@ -127,7 +134,7 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
         //Button default anchor point is top left, need to recalculate center by position
         float fDistance = dist(this.GetPositionX(), this.GetPositionY(), inputController.GetX(), inputController.GetY()); 
         if (fDistance < this.fBtnSize/2 + inputController.fCursorSize/2) {
-          //collide 
+          //collide
           return true;
         }
       }

@@ -36,6 +36,7 @@ ControlP5 g_cp5Controller = null;
 AudioPlayer CameraShutterSound;
 AudioPlayer CameraFocusSound;
 AudioPlayer CameraBeepSound;
+AudioPlayer ClickSound;
 Minim minim;//audio context
 
 //For animation
@@ -55,6 +56,7 @@ void setup() {
   CameraShutterSound = minim.loadFile("CameraShutterSound.mp3");
   CameraBeepSound = minim.loadFile("BeepSound.mp3");
   CameraFocusSound = minim.loadFile("CameraFocusSound.mp3");
+  ClickSound = minim.loadFile("ClickSound.mp3");
 
   //Animation
   HandCalibration = new Gif(this, "giphy.gif");
