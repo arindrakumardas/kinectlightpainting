@@ -45,7 +45,7 @@ class CPageIdle extends CScene implements IButtonHandler {
     canvas.Init();
     this.AddChild(canvas);
 
-    imgBackground = loadImage("shutter.jpg");
+//    imgBackground = loadImage("shutter.jpg");
 
     return true;
   }
@@ -58,14 +58,14 @@ class CPageIdle extends CScene implements IButtonHandler {
   //    }
   //  }
 
-
+/*
   public void Draw() {
     super.Draw();
     image(imgBackground, width*0.4, height*0.5, width*0.8, height);
     g_inputManager.DrawAllCursor();
     //  image(HandCalibration, width/2-30, HandCalibration.height / 2);
   }
-
+ */
   // Implementing IButtonHanlder callback
   public void OnButtonSelected(int iBtnTag) {
     CLogger.Info("[CPageIdle.OnButtonSelected] button selected. buttonTag: " + iBtnTag);

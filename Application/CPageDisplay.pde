@@ -28,11 +28,11 @@ class CPageDisplay extends CScene implements IButtonHandler {
     CameraShutterSound.play();
 
     //Init drawable components inside CLayer
-    /*  CLabel testLabel = new CLabel("This is PageDisplay");  
+ /*  CLabel testLabel = new CLabel("This is PageDisplay");  
      testLabel.fFontSize = 20;
      testLabel.SetPosition(width/2, 20);
      this.AddChild(testLabel);
-     */
+  */
     //Create button
     //    CButton refreshButton = new CButton("RefreshBtn", width - 100, 30, "refresh.png", "refresh-neg.png", "Start over"); //change to another image
     CButton refreshButton = new CButton("refresh.png"); //change to another image
@@ -67,31 +67,16 @@ class CPageDisplay extends CScene implements IButtonHandler {
     this.AddChild(homeLabel);
 
     this.imgRecordedDrawing = loadImage(Configs.SAVED_DRAWING_FILEPATH);
-    this.imgCapturePhoto = loadImage("photo.jpg");
+    this.imgCapturePhoto = loadImage(Configs.SAVED_PHOTO_FILEPATH);
     return true;
   }
 
   public void Draw() {
     super.Draw();
     g_inputManager.DrawAllCursor();
-/* -----------------------------------------------------------
- * This causes NULL POINTER EXCEPTION
- * ----------------------------------------------------------- */
-//    image(this.imgCapturePhoto, width/2, height/2);    
+    image(this.imgCapturePhoto, width/2, height/2, width*0.6, height);    
     image(this.imgRecordedDrawing, width/2, height/2);
   }
-
-  //  public void ControlEventHandler(ControlEvent theEvent) {
-  //    CLogger.Debug("CPageIdle.ControlEvent(). Name:" + theEvent.getName() + " Value:" + theEvent.getValue());
-  //    CLogger.Debug("CPageIdle.ControlEvent(). " + theEvent);
-  //    
-  //    if(theEvent.getName() == "HomeBtn"){
-  //      g_pageController.GotoPageIdle();
-  //    }
-  //    if (theEvent.getName() == "RefreshBtn"){
-  //      g_pageController.GotoPageInitialize();
-  //    }
-  //  }
 
   // Implementing IButtonHanlder callback
   public void OnButtonSelected(int iBtnTag) {
