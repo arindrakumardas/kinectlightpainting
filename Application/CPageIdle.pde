@@ -29,21 +29,31 @@ class CPageIdle extends CScene implements IButtonHandler {
     //Create button
     //CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image
     CButton startButton = new CButton("start.png"); //change to another image
-    startButton.Init(width - 75, height/2-20, "Start capturing");
+    startButton.Init(width - 65, height/2-20, "Start capturing");
     startButton.SetHandler(this);
     this.AddChild(startButton); //the CButton is added by CP5 so no need to be added to the Layer
 
     //Create label for start button
     CLabel startLabel = new CLabel("Press to Start");
-    startLabel.fFontSize = 14;
-    startLabel.SetPosition(width-75, height/2+25);    //(-100,30) is the distance from position, for this I'm not writing 90 instead
+    startLabel.fFontSize = 18;
+    textFont(SegoeUIFont);
+    startLabel.cFontColor = color(255, 102, 0);
+    startLabel.SetPosition(width-65, height/2+30);    //(-100,30) is the distance from position, for this I'm not writing 90 instead
     this.AddChild(startLabel); 
+
 
     //Create canvas (create canvas after because the cursor can be drawn over the above ui compoment)
     CCanvas canvas = new CCanvas();
     canvas.Init();
     this.AddChild(canvas);
+    
+    //Message Label
+    CLabel messageLabel = new CLabel("This page is not recorded");  
+    messageLabel.fFontSize = 18;
+    messageLabel.SetPosition(width/3+30, 30);
+    this.AddChild(messageLabel);
     return true;
+ 
   }
 
 //  public void ControlEventHandler(ControlEvent theEvent) {

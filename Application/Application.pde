@@ -43,6 +43,9 @@ PImage[] animation;
 Gif HandCalibration;
 boolean pause = false;
 
+//SegoeUI Font 
+PFont SegoeUIFont;
+
 void setup() {
   size(640, 480); //size of the sketch
   background(0, 0, 0);
@@ -56,6 +59,11 @@ void setup() {
   //Animation
   HandCalibration = new Gif(this, "giphy.gif");
   HandCalibration.loop();
+
+  //Font
+  
+  SegoeUIFont = loadFont("SegoeUI-Bold-48.vlw");
+  
 
   //Init PageController
   g_pageController = new CPageController();
