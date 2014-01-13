@@ -35,7 +35,7 @@ class CPageIdle extends CScene implements IButtonHandler {
 
     //Create label for start button
     CLabel startLabel = new CLabel("Press to Start");
-    startLabel.fFontSize = 12;
+    startLabel.fFontSize = 14;
     startLabel.SetPosition(width-75, height/2+25);    //(-100,30) is the distance from position, for this I'm not writing 90 instead
     this.AddChild(startLabel); 
 

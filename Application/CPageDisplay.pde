@@ -37,15 +37,15 @@ class CPageDisplay extends CScene implements IButtonHandler {
     CButton refreshButton = new CButton("refresh.png"); //change to another image
     refreshButton.Init();
     refreshButton.SetHandler(this);
-    refreshButton.SetPosition(width - 75, height/7);
+    refreshButton.SetPosition(width - 75, height/4);
     refreshButton.strBtnCaption = "Start over";
     refreshButton.iTag = TAG_REFRESH_BTN;
     this.AddChild(refreshButton); 
 
     //Create label for refresh button
     CLabel refreshLabel = new CLabel("Start again");
-    refreshLabel.fFontSize = 12;
-    refreshLabel.SetPosition(width-75, height/7+40);
+    refreshLabel.fFontSize = 14;
+    refreshLabel.SetPosition(width-75, height/4+45);
     this.AddChild(refreshLabel);
  
 
@@ -54,15 +54,15 @@ class CPageDisplay extends CScene implements IButtonHandler {
     CButton homeButton = new CButton("home.png"); //change to another image
     homeButton.Init();
     homeButton.SetHandler(this);
-    homeButton.SetPosition(width - 75, height/3);
+    homeButton.SetPosition(width - 75, height/2+50);
     homeButton.strBtnCaption = "Go to Home";
     homeButton.iTag = TAG_HOME_BTN;
     this.AddChild(homeButton); 
    
     //Create label for home button
       CLabel homeLabel = new CLabel("Home");
-      homeLabel.fFontSize = 12;
-      homeLabel.SetPosition(width-75, height/3+40);
+      homeLabel.fFontSize = 14;
+      homeLabel.SetPosition(width-75, height/2+95);
       this.AddChild(homeLabel);
       this.imgRecordedDrawing = loadImage(Configs.SAVED_DRAWING_FILEPATH);
       return true;
