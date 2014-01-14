@@ -11,9 +11,6 @@ public class CImgCapture extends CScene {
     }
 
     CLogger.Debug("[CImgCapture.Init]");
-    // enable depthMap generation 
-    this.imgCapture.enableDepth();
-
     // enable ir generation
     this.imgCapture.enableRGB();
 
