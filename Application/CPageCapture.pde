@@ -80,7 +80,7 @@ class CPageCapture extends CScene implements ITimerHandler {
       fill(0);
       ellipse(width - 75, height/7, 18, 18); 
       CameraBeepSound.unmute();
-      CLogger.Debug("Vintage");
+      //CLogger.Debug("Vintage");
     } 
     else {
       CameraBeepSound.play();
@@ -99,4 +99,3 @@ class CPageCapture extends CScene implements ITimerHandler {
     delay(400);
   }
 }
-

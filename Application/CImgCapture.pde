@@ -1,5 +1,8 @@
 public class CImgCapture extends CScene {
   protected Capture imgCapture = null;
+  protected PImage prevFrame;
+  protected PImage frameCapture;
+
 
   CImgCapture() {
     super();
@@ -13,6 +16,7 @@ public class CImgCapture extends CScene {
     CLogger.Debug("[CImgCapture.Init]");
 
     this.imgCapture = new Capture(Application.this);
+    this.frameCapture = createImage(imgCapture.width,imgCapture.height,GRAY);
     this.imgCapture.start();
 
     return true;
@@ -26,14 +30,19 @@ public class CImgCapture extends CScene {
       this.imgCapture.read();
       this.imgCapture.filter(GRAY);
     }
-    image(this.imgCapture, 0, 0);
+      
+
+    image(this.imgCapture, width/2, height/2);
   }
 
   //CTimer callback
   public void CapturePhoto() {
+    
+    //CLogger.Debug("[CImgCapture] "+" width "+imgCapture.width+" height "+imgCapture.height);
+    this.frameCapture=imgCapture.get();  
+    this.frameCapture.save(Configs.SAVED_PHOTO_FILEPATH);
     this.imgCapture.stop();
-    saveFrame(Configs.SAVED_PHOTO_FILEPATH);
+    
     //this.canvas.SaveDrawing();
   }
 }
-

@@ -89,4 +89,3 @@ class CPageDisplay extends CScene implements IButtonHandler {
     }
   }
 }
-
