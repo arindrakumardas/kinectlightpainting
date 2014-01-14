@@ -19,7 +19,9 @@ import ddf.minim.analysis.*;
 import ddf.minim.ugens.*;
 import ddf.minim.effects.*;
 import gifAnimation.*;
-import processing.video.*;
+//import processing.video.*;
+import org.openkinect.*;
+import org.openkinect.processing.*;
 
 CPageController g_pageController = null; //this is a singleton
 //IInputController g_inputController = null; //@TODO: remove from global and passing to classes if necessary

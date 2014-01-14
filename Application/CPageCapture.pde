@@ -12,7 +12,7 @@ class CPageCapture extends CScene implements ITimerHandler {
   int iExposureTime = 8; //in sec
 
   protected CCanvas canvas = null;
-  protected CImgCapture capture = null; 
+  protected CImgCapture capture = null;
 
   CPageCapture() {
     super();
@@ -55,6 +55,7 @@ class CPageCapture extends CScene implements ITimerHandler {
     this.capture = new CImgCapture();
     this.capture.Init();
     this.AddChild(this.capture);
+     
 
     return true;
   }
@@ -94,7 +95,7 @@ class CPageCapture extends CScene implements ITimerHandler {
   //CTimer callback
   public void TimeIsUp(int iTag) {
     this.canvas.SaveDrawing();
-    this.capture.CapturePhoto();
+    this.capture.Draw();
     g_pageController.GotoPageDisplay();
     delay(400);
   }
