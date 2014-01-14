@@ -31,17 +31,17 @@ public class CImgCapture extends CScene {
     super.Draw();
 
     this.Update();
-    if ((imgCapture.nodes() & SimpleOpenNI.NODE_DEPTH) != 0)
+    if ((this.imgCapture.nodes() & SimpleOpenNI.NODE_DEPTH) != 0)
     {
-      if ((imgCapture.nodes() & SimpleOpenNI.NODE_IMAGE) != 0)
+      if ((this.imgCapture.nodes() & SimpleOpenNI.NODE_IMAGE) != 0)
       {
         tint(100);
         //      image(context.depthImage(), 0, 0);
         //   filter(GRAY);   
-        image(imgCapture.rgbImage(), imgCapture.depthWidth() + 10, 0);
+        image(this.imgCapture.rgbImage(), this.imgCapture.depthWidth() + 10, 0);
       }
       else
-        image(context.depthImage(), 0, 0);
+        image(this.imgCapture.depthImage(), 0, 0);
     }
   }
 
