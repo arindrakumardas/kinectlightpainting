@@ -24,8 +24,8 @@ class CPageCapture extends CScene implements ITimerHandler{
     }
 
     CLogger.Debug("[CPageCapture.Init]");
-    CameraFocusSound.play();
-    CameraFocusSound.rewind();
+//    CameraFocusSound.play();
+//    CameraFocusSound.rewind();
     
 
     //Init drawable components inside CLayer
@@ -91,7 +91,7 @@ class CPageCapture extends CScene implements ITimerHandler{
   //CTimer callback
   public void TimeIsUp(int iTag){
     this.canvas.SaveDrawing();
-    g_pageController.GotoPageDisplay();
+    g_pageController.GotoPageFinalize();
     delay(400);
   }
 }

@@ -23,8 +23,8 @@ class CPageDisplay extends CScene implements IButtonHandler {
     }
 
     CLogger.Debug("[CPageDisplay.Init]");
-    CameraShutterSound.rewind();
-    CameraShutterSound.play();
+//    CameraShutterSound.rewind();
+//    CameraShutterSound.play();
 
     //Init drawable components inside CLayer
 /*  CLabel testLabel = new CLabel("This is PageDisplay");  
@@ -96,7 +96,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
     if(iBtnTag == TAG_HOME_BTN){ //Home button
       g_pageController.GotoPageIdle();
     }else if (iBtnTag == TAG_REFRESH_BTN){
-      g_pageController.GotoPageCapture();
+      g_pageController.GotoPageInitialize();
     }
     
   }
