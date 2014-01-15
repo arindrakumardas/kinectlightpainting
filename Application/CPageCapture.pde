@@ -9,7 +9,7 @@ class CPageCapture extends CScene implements ITimerHandler{
 
   float fCaptureTime;
   float fStartTime;
-  int iExposureTime = 8; //in sec
+  int iExposureTime = 6; //in sec
   
   protected CCanvas canvas = null; 
 
@@ -24,8 +24,8 @@ class CPageCapture extends CScene implements ITimerHandler{
     }
 
     CLogger.Debug("[CPageCapture.Init]");
-    CameraFocusSound.play();
-    CameraFocusSound.rewind();
+//    CameraFocusSound.play();
+//    CameraFocusSound.rewind();
     
 
     //Init drawable components inside CLayer
@@ -42,7 +42,7 @@ class CPageCapture extends CScene implements ITimerHandler{
 //    countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
     this.AddChild(countdownTimer);
     countdownTimer.StartTimer(iExposureTime);
-    delay(1500);
+    delay(500);
     
     fStartTime = millis()/1000;    //this is reseting the timer every time you go to PageCapture    
     
@@ -92,6 +92,6 @@ class CPageCapture extends CScene implements ITimerHandler{
   public void TimeIsUp(int iTag){
     this.canvas.SaveDrawing();
     g_pageController.GotoPageDisplay();
-    delay(400);
+//    delay(400);
   }
 }

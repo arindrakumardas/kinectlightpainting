@@ -96,7 +96,7 @@ class CPageDisplay extends CScene implements IButtonHandler {
     if(iBtnTag == TAG_HOME_BTN){ //Home button
       g_pageController.GotoPageIdle();
     }else if (iBtnTag == TAG_REFRESH_BTN){
-      g_pageController.GotoPageCapture();
+      g_pageController.GotoPageInitialize();
     }
     
   }
