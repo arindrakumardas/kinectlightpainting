@@ -23,8 +23,8 @@ class CPageDisplay extends CScene implements IButtonHandler {
     }
 
     CLogger.Debug("[CPageDisplay.Init]");
-//    CameraShutterSound.rewind();
-//    CameraShutterSound.play();
+    CameraShutterSound.rewind();
+    CameraShutterSound.play();
 
     //Init drawable components inside CLayer
 /*  CLabel testLabel = new CLabel("This is PageDisplay");  

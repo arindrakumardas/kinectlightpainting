@@ -29,12 +29,12 @@ public class CPageController {
     curPage.Init();
   }
   
-  void GotoPageFinalize() {
-    CLogger.Info("CPageController.CPageFinalize");
-    ResetCP5Controller();
-    curPage = new CPageFinalize();
-    curPage.Init();
-  }
+//  void GotoPageFinalize() {
+//    CLogger.Info("CPageController.CPageFinalize");
+//    ResetCP5Controller();
+//    curPage = new CPageFinalize();
+//    curPage.Init();
+//  }
 
   void ResetCP5Controller() {
 
