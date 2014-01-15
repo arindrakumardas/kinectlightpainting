@@ -1,10 +1,3 @@
-/* --------------------------------------------------------------------------
- * CPageIdle 
- * author:  Gigi Ho
- * date:  15/12/2012 
- * ----------------------------------------------------------------------------
- */
-
 class CPageInitialize extends CScene implements ITimerHandler {
 
   PImage imgOpen = null;

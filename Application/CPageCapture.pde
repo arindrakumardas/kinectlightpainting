@@ -92,6 +92,6 @@ class CPageCapture extends CScene implements ITimerHandler{
   public void TimeIsUp(int iTag){
     this.canvas.SaveDrawing();
     g_pageController.GotoPageFinalize();
-    delay(400);
+//    delay(400);
   }
 }

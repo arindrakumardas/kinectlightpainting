@@ -1,14 +1,7 @@
-/* --------------------------------------------------------------------------
- * CPageIdle 
- * author:  Gigi Ho
- * date:  15/12/2012 
- * ----------------------------------------------------------------------------
- */
-
 class CPageFinalize extends CScene implements ITimerHandler {
 
   PImage imgOpen = null;
-  float fDiameter = 200;  
+  float fDiameter;  
 
   CPageFinalize() {
     super();
@@ -19,7 +12,7 @@ class CPageFinalize extends CScene implements ITimerHandler {
       return false;
     }
 
-    CLogger.Debug("[CPageInitialize.Init]");
+    CLogger.Debug("[CPageFinalize.Init]");
 
     imgOpen = loadImage("shutter.png");
 
@@ -29,11 +22,13 @@ class CPageFinalize extends CScene implements ITimerHandler {
     countdownTimer.SetPosition(width - 75, height/3);
     countdownTimer.bDisplayLabel = false; //uncomment this if dont want to diaply the label
     this.AddChild(countdownTimer);
-    countdownTimer.StartTimer(CameraShutterSound.length()/1000);
+//    countdownTimer.StartTimer(CameraShutterSound.length()/1000);
+    countdownTimer.StartTimer(0.5);
 
     CameraShutterSound.rewind();
     CameraShutterSound.play();    
-
+    
+    fDiameter = 220;
 
     //Init drawable components inside CLayer
     /* CLabel testLabel = new CLabel("This is PageInitialize");  
@@ -47,15 +42,17 @@ class CPageFinalize extends CScene implements ITimerHandler {
   public void Draw() {
     super.Draw();
     image(imgOpen, width/2, height/2, 600, 600);
-
-    ellipse(width/2, height/2, this.fDiameter-millis(), this.fDiameter-millis());
+    fill(150);
+    ellipse(width/2, height/2, this.fDiameter, this.fDiameter);
+    this.fDiameter -=6;
+    
   }
 
 
   //CTimer callback
   public void TimeIsUp(int iTag) {
     g_pageController.GotoPageDisplay();
-//    delay(400);
+    delay(400);
   }
 }
 
