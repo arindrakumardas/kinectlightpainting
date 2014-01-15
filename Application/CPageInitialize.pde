@@ -8,7 +8,7 @@
 class CPageInitialize extends CScene implements ITimerHandler {
 
   PImage imgOpen = null;
-  float fDiameter = 0;  
+  float fDiameter;  
 
   CPageInitialize() {
     super();
@@ -49,9 +49,9 @@ class CPageInitialize extends CScene implements ITimerHandler {
   public void Draw() {
     super.Draw();
     image(imgOpen, width/2, height/2, 600, 600);
-    
+    fill(150);
     ellipse(width/2, height/2, this.fDiameter, this.fDiameter);
-    this.fDiameter = millis()/1000 - fDiameter;
+    this.fDiameter -= 6;
   }
 
 
