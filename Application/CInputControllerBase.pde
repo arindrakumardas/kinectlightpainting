@@ -67,9 +67,10 @@ public abstract class CInputControllerBase {
       return;
     }
     
-     if(mouseX < 100) {
-//    cursor(mouseCursor, 0, 0);
-  } 
+/*     if(mouseX < 100) {
+    cursor(mouseCursor, 0, 0);
+  }
+ */ 
     fill(color(255, 255, 255, 150));
     noStroke();
     ellipse(this.GetX(), this.GetY(), fCursorSize, fCursorSize);
