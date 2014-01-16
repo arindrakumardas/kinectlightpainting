@@ -45,7 +45,7 @@ class CPageInitialize extends CScene implements ITimerHandler {
     image(imgOpen, width/2, height/2, 600, 600);
     fill(150);
     ellipse(width/2, height/2, this.fDiameter, this.fDiameter);
-    this.fDiameter -= 6;
+    this.fDiameter += 6;
   }
 
 

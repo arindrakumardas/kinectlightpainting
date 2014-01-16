@@ -107,7 +107,7 @@ public class CCanvas extends CNode implements IDrawable {
     //Also show the background of user context using camera to capture
     if (g_inputManager.HasKinect()) {
       PImage backgroundImage = g_inputManager.kinect.rgbImage().get(); //rgbImage() depthImage()
-      backgroundImage.resize(width, height);
+//      backgroundImage.resize(width, height);
       int backgroundImageArrSize = backgroundImage.width * backgroundImage.height;
 
       //Dim image
@@ -133,8 +133,8 @@ public class CCanvas extends CNode implements IDrawable {
 
 
       //Also save in pgRecordedBackground
-//      this.pgRecordedBackground.image(backgroundImage, 0, 0);
-//      this.pgRecordedBackground.blend(backgroundImage, 0, 0, width, height, 0, 0, width, height, ADD);
+      this.pgRecordedBackground.image(backgroundImage, 0, 0);
+      this.pgRecordedBackground.blend(backgroundImage, 0, 0, width, height, 0, 0, width, height, ADD);
     }
   }
 
@@ -223,7 +223,25 @@ public class CCanvas extends CNode implements IDrawable {
 
 
       //      this.pgRecordedBackground.blend(this.pgRecordedDrawing, 0, 0, width, height, 0, 0, height, width, LIGHTEST);
-      this.pgRecordedBackground.save(Configs.SAVED_BACKGROUND_FILEPATH);
+            //Dim image
+      PImage backgroundImage = this.pgRecordedBackground.get();
+      
+      int backgroundImageArrSize = backgroundImage.width * backgroundImage.height;
+      
+      backgroundImage.loadPixels();
+      colorMode(HSB);
+      for (int i=0; i<backgroundImageArrSize; i++) {
+        float pixelHue = hue(backgroundImage.pixels[i]);
+        float pixelSaturation = saturation(backgroundImage.pixels[i]);
+        float pixelBrightness = brightness(backgroundImage.pixels[i]);
+        float adjustedBrightness = map(pixelBrightness, 0, 255, 0, 100);
+
+        backgroundImage.pixels[i] = color(pixelHue, pixelSaturation, adjustedBrightness);
+      }
+      backgroundImage.updatePixels();
+      colorMode(RGB);
+      
+      backgroundImage.save(Configs.SAVED_BACKGROUND_FILEPATH);
     }
   }
 

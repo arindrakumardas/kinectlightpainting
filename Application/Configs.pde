@@ -6,8 +6,8 @@ public static final class Configs{
   public static final String SAVED_DRAWING_FILEPATH = "drawing.png";
   public static final String SAVED_BACKGROUND_FILEPATH = "photo.png";
   
-  public static final int SKETCH_WIDTH = 800;
-  public static final int SKETCH_HEIGHT = 600;
+  public static final int SKETCH_WIDTH = 640;
+  public static final int SKETCH_HEIGHT = 480;
   
   
   
