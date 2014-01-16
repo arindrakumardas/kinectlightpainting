@@ -21,15 +21,15 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
     //    this.SetPosition(fPosX, fPosY);
   }
 
-/*  CButton (String strNormalImgPath, String strSelectedImgPath) {
-    super();
-    this.imgNormalImage = loadImage(strNormalImgPath);
-    this.imgNormalImage.resize(int(fBtnSize), int(fBtnSize));
-    this.imgSelectedImage = loadImage(strSelectedImgPath);
-    this.imgSelectedImage.resize(int(fBtnSize), int(fBtnSize));
-    //    this.SetPosition(fPosX, fPosY);
-  }
-*/
+  /*  CButton (String strNormalImgPath, String strSelectedImgPath) {
+   super();
+   this.imgNormalImage = loadImage(strNormalImgPath);
+   this.imgNormalImage.resize(int(fBtnSize), int(fBtnSize));
+   this.imgSelectedImage = loadImage(strSelectedImgPath);
+   this.imgSelectedImage.resize(int(fBtnSize), int(fBtnSize));
+   //    this.SetPosition(fPosX, fPosY);
+   }
+   */
 
   public boolean Init() {
     return this.Init(0, 0, null);
@@ -68,6 +68,10 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
       if (iButtonOverStartTime == -1) { //only set at first time
         iButtonOverStartTime = millis();
 
+        // insert click sound
+        ClickSound.play();
+        ClickSound.rewind();
+
         CLogger.Debug("[CButton.Update] Button is being over. ButtonOverStartTime: " + iButtonOverStartTime);
       }
       else {
@@ -96,16 +100,14 @@ public class CButton extends CLayer { //this class extends CLayer because it nee
 
     //Draw button according to ButtonOver state
     imageMode(CENTER);
-    
+
     if (this.bButtonOver) {
 
       // highlight button choice
       fill(255, 255, 255, 200);
       ellipse(this.GetPositionX(), this.GetPositionY(), this.fBtnSize+10, this.fBtnSize+10);
       image(imgSelectedImage, this.GetPositionX(), this.GetPositionY(), this.fBtnSize, this.fBtnSize);
-      // insert click sound
-      ClickSound.play();
-      ClickSound.rewind();
+
 
       //Also draw button selection time arc
       int iButtonOverTime = millis() - iButtonOverStartTime;
