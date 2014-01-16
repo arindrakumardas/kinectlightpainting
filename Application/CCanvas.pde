@@ -1,6 +1,6 @@
 public class CCanvas extends CNode implements IDrawable {
-  public int iWidth = 400;
-  public int iHeight = 300;
+  public int iWidth = 0;
+  public int iHeight = 0;
 
   public int iLightLifeSpan = 200; //1s
 
@@ -9,6 +9,9 @@ public class CCanvas extends CNode implements IDrawable {
 
   protected boolean bIsRecorded = false;
   protected PGraphics pgRecordedDrawing = null;
+
+  protected PGraphics pgRecordedBackground = null;
+
 
   //@attn: vishnu
   //1- 'g_' prefix means global variables, for which the variables can be accessed in any scope, inside any class
@@ -44,6 +47,8 @@ public class CCanvas extends CNode implements IDrawable {
     this.bIsRecorded = bIsDrawingCapture;
 
     this.pgRecordedDrawing = createGraphics(width, height);
+    this.pgRecordedBackground = createGraphics(width, height);
+
 
 
 
@@ -54,6 +59,8 @@ public class CCanvas extends CNode implements IDrawable {
 
   public void Draw() {
     this.DrawBackground();
+
+
 
     // loop throught all inputController and draw on canvas accordingly
     Map<Integer, CInputControllerBase> inputControllerMap = g_inputManager.GetAllInput();
@@ -83,13 +90,67 @@ public class CCanvas extends CNode implements IDrawable {
 
 
   void DrawBackground() {
-    //draw border n bg color
+    //Draw border n bg color
     rectMode(CENTER);
     fill(this.cBackgroundColor);
     //stroke(this.cBackgroundColor);
     strokeWeight(0);//To keep the canvas fixed, otherwise the border changers as per the weight of the trail (comment this line and see)
     rect(this.GetPositionX(), this.GetPositionY(), this.iWidth, this.iHeight);
     //  rect(width/2, height/2, 100,100);
+
+
+    //Also show the background of user context using camera to capture
+    if (g_inputManager.HasKinect()) {
+      PImage backgroundImage = g_inputManager.kinect.rgbImage();
+      int backgroundImageArrSize = backgroundImage.width * backgroundImage.height;
+
+
+      //Dim image
+      backgroundImage.loadPixels();
+      colorMode(HSB);
+      for (int i=0; i<backgroundImageArrSize; i++) {
+        float pixelHue = hue(backgroundImage.pixels[i]);
+        float pixelSaturation = saturation(backgroundImage.pixels[i]);
+        float pixelBrightness = brightness(backgroundImage.pixels[i]);
+
+        float adjustedBrightness = map(pixelBrightness, 0, 255, 0, 100);
+
+        backgroundImage.pixels[i] = color(pixelHue, pixelSaturation, adjustedBrightness);
+      }
+      backgroundImage.updatePixels();
+      colorMode(RGB);
+
+      //Mask the image
+      int[] iMaskArr = new int[backgroundImageArrSize];
+
+      for (int iRow = 0; iRow < backgroundImage.height; iRow++) {
+        for (int iCol = 0; iCol < backgroundImage.width; iCol++) {
+          if (iCol > backgroundImage.width * 0.8) {
+            iMaskArr[iRow*backgroundImage.width + iCol] = 128;
+          }
+          else {
+            iMaskArr[iRow*backgroundImage.width + iCol] = 255;
+          }
+        }
+      }
+      backgroundImage.mask(iMaskArr);
+
+
+
+      //Display it
+      imageMode(CORNER);
+      image(backgroundImage, 0, 0);
+
+      //Also save in pgRecordedBackground
+      this.pgRecordedBackground.image(backgroundImage, 0, 0);
+      this.pgRecordedBackground.blend(backgroundImage, 0, 0, width, height, 0, 0, width, height, ADD);
+    }
+
+    //Draw button panel background
+    //    rectMode(CORNER);
+    //    fill(color(0, 0, 0, 255));
+    //    strokeWeight(0);//To keep the canvas fixed, otherwise the border changers as per the weight of the trail (comment this line and see)
+    //    rect(this.GetPositionX()+this.iWidth/2, this.GetPositionY()-this.iHeight/2, width-this.iWidth, this.iHeight);
   }
 
 
@@ -106,8 +167,6 @@ public class CCanvas extends CNode implements IDrawable {
     strokeWeight(curLightSource.fDefatulSize);
 
     if (this.bIsRecorded) {
-
-
       this.pgRecordedDrawing.beginShape();
       this.pgRecordedDrawing.noFill();
       this.pgRecordedDrawing.stroke(curLightSource.colLight);
@@ -117,10 +176,10 @@ public class CCanvas extends CNode implements IDrawable {
     int iIdx = 0;
     while (itrVecPos.hasNext ())
     {
-      if(iIdx == 0){
+      if (iIdx == 0) {
         this.pgRecordedDrawing.beginDraw();
-        
-      }else if(iIdx > 0){
+      }
+      else if (iIdx > 0) {
         this.pgRecordedDrawing.endDraw();
       }
       iIdx++;
@@ -176,6 +235,10 @@ public class CCanvas extends CNode implements IDrawable {
     if (this.pgRecordedDrawing != null) {
       this.pgRecordedDrawing.endDraw();
       this.pgRecordedDrawing.save(Configs.SAVED_DRAWING_FILEPATH);
+
+
+      //      this.pgRecordedBackground.blend(this.pgRecordedDrawing, 0, 0, width, height, 0, 0, height, width, LIGHTEST);
+      this.pgRecordedBackground.save(Configs.SAVED_BACKGROUND_FILEPATH);
     }
   }
 
@@ -219,3 +282,4 @@ public class CCanvas extends CNode implements IDrawable {
     return new PVector(iVertexX, iVertexY);
   }
 }
+

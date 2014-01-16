@@ -25,6 +25,18 @@ class CPageIdle extends CScene implements IButtonHandler {
     testLabel.SetPosition(width/2, 20);
     this.AddChild(testLabel);
     */
+    
+
+    
+    
+    //Draw button panel background
+    CSprite panelBg = new CSprite(SHAPE_RECT, width*0.8, 0);
+    panelBg.colShapeColor = color(0, 128);
+    panelBg.iAnchor = CORNER;
+    panelBg.iWidth = int(width*0.2);
+    panelBg.iHeight = height;
+    this.AddChild(panelBg);
+    
 
     //Create button
     //CButton startButton = new CButton("StartBtn", width - 100, 30, "start.png", "start-neg.png", "Start capturing"); //change to another image

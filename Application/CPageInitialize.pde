@@ -41,6 +41,7 @@ class CPageInitialize extends CScene implements ITimerHandler {
 
   public void Draw() {
     super.Draw();
+    imageMode(CENTER);
     image(imgOpen, width/2, height/2, 600, 600);
     fill(150);
     ellipse(width/2, height/2, this.fDiameter, this.fDiameter);

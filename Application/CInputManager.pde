@@ -5,7 +5,7 @@
  * ----------------------------------------------------------------------------
  */
 public class CInputManager {
-  SimpleOpenNI kinect = null;
+  public SimpleOpenNI kinect = null;
 
 
   public Map<Integer, CInputControllerBase> inputControllerMap = new HashMap<Integer, CInputControllerBase>(); //key: Input id (id of hands / mouse cursor); value: InputController; handId always starts with 1, id 0 is for mouse
@@ -22,6 +22,7 @@ public class CInputManager {
 
       this.kinect.setMirror(true); // mirror is by default enabled//
       this.kinect.enableDepth();  // enable depthMap generation 
+      this.kinect.enableRGB(); //Enable the camera image collection
 
       this.kinect.enableHand();
       this.kinect.startGesture(SimpleOpenNI.GESTURE_HAND_RAISE); //GESTURE_HAND_RAISE , GESTURE_WAVE
@@ -45,6 +46,7 @@ public class CInputManager {
     //updating kinect
     if (this.kinect.isInit() == true) {
       this.kinect.update();
+      
     }
 
     // for updating mouse vecList
@@ -84,6 +86,11 @@ public class CInputManager {
         inputController.DrawCursor();
       }
     }
+  }
+  
+  public boolean HasKinect(){
+    return this.kinect.isInit();
+    
   }
 
 
