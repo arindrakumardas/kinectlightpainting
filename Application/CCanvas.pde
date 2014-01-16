@@ -12,11 +12,8 @@ public class CCanvas extends CNode implements IDrawable {
 
   protected PGraphics pgRecordedBackground = null;
 
+  protected int[] iCanvasMaskArr;
 
-  //@attn: vishnu
-  //1- 'g_' prefix means global variables, for which the variables can be accessed in any scope, inside any class
-  //2- if you define below like this, this is a member variable instead of a global.
-  //3- g_lightSource is already defined in Application.pde, why declare and create a new one again here?
   CLightSource lightSource = new CLightSource();
 
   // this is to support multi light source
@@ -49,8 +46,19 @@ public class CCanvas extends CNode implements IDrawable {
     this.pgRecordedDrawing = createGraphics(width, height);
     this.pgRecordedBackground = createGraphics(width, height);
 
-
-
+    int iMaskWidth = width;
+    int iMaskHeight = height;
+    this.iCanvasMaskArr = new int[iMaskHeight*iMaskWidth];
+    for (int iRow = 0; iRow < iMaskHeight; iRow++) {
+      for (int iCol = 0; iCol < iMaskWidth; iCol++) {
+        if (iCol > iMaskWidth * 0.8) {
+          this.iCanvasMaskArr[iRow*iMaskWidth + iCol] = 0;
+        }
+        else {
+          this.iCanvasMaskArr[iRow*iMaskWidth + iCol] = 255;
+        }
+      }
+    }
 
     this.DrawBackground();
 
@@ -59,8 +67,6 @@ public class CCanvas extends CNode implements IDrawable {
 
   public void Draw() {
     this.DrawBackground();
-
-
 
     // loop throught all inputController and draw on canvas accordingly
     Map<Integer, CInputControllerBase> inputControllerMap = g_inputManager.GetAllInput();
@@ -98,12 +104,11 @@ public class CCanvas extends CNode implements IDrawable {
     rect(this.GetPositionX(), this.GetPositionY(), this.iWidth, this.iHeight);
     //  rect(width/2, height/2, 100,100);
 
-
     //Also show the background of user context using camera to capture
     if (g_inputManager.HasKinect()) {
-      PImage backgroundImage = g_inputManager.kinect.rgbImage();
+      PImage backgroundImage = g_inputManager.kinect.rgbImage().get(); //rgbImage() depthImage()
+      backgroundImage.resize(width, height);
       int backgroundImageArrSize = backgroundImage.width * backgroundImage.height;
-
 
       //Dim image
       backgroundImage.loadPixels();
@@ -112,7 +117,6 @@ public class CCanvas extends CNode implements IDrawable {
         float pixelHue = hue(backgroundImage.pixels[i]);
         float pixelSaturation = saturation(backgroundImage.pixels[i]);
         float pixelBrightness = brightness(backgroundImage.pixels[i]);
-
         float adjustedBrightness = map(pixelBrightness, 0, 255, 0, 100);
 
         backgroundImage.pixels[i] = color(pixelHue, pixelSaturation, adjustedBrightness);
@@ -121,36 +125,17 @@ public class CCanvas extends CNode implements IDrawable {
       colorMode(RGB);
 
       //Mask the image
-      int[] iMaskArr = new int[backgroundImageArrSize];
-
-      for (int iRow = 0; iRow < backgroundImage.height; iRow++) {
-        for (int iCol = 0; iCol < backgroundImage.width; iCol++) {
-          if (iCol > backgroundImage.width * 0.8) {
-            iMaskArr[iRow*backgroundImage.width + iCol] = 128;
-          }
-          else {
-            iMaskArr[iRow*backgroundImage.width + iCol] = 255;
-          }
-        }
-      }
-      backgroundImage.mask(iMaskArr);
-
-
+      backgroundImage.mask(this.iCanvasMaskArr);
 
       //Display it
       imageMode(CORNER);
       image(backgroundImage, 0, 0);
 
-      //Also save in pgRecordedBackground
-      this.pgRecordedBackground.image(backgroundImage, 0, 0);
-      this.pgRecordedBackground.blend(backgroundImage, 0, 0, width, height, 0, 0, width, height, ADD);
-    }
 
-    //Draw button panel background
-    //    rectMode(CORNER);
-    //    fill(color(0, 0, 0, 255));
-    //    strokeWeight(0);//To keep the canvas fixed, otherwise the border changers as per the weight of the trail (comment this line and see)
-    //    rect(this.GetPositionX()+this.iWidth/2, this.GetPositionY()-this.iHeight/2, width-this.iWidth, this.iHeight);
+      //Also save in pgRecordedBackground
+//      this.pgRecordedBackground.image(backgroundImage, 0, 0);
+//      this.pgRecordedBackground.blend(backgroundImage, 0, 0, width, height, 0, 0, width, height, ADD);
+    }
   }
 
 

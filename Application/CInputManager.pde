@@ -21,8 +21,11 @@ public class CInputManager {
       CLogger.Info("[CInputManager.Init()] InputController : InputKinect");
 
       this.kinect.setMirror(true); // mirror is by default enabled//
+//      this.kinect.enableDepth(800, 600, 60);  // enable depthMap generation 
       this.kinect.enableDepth();  // enable depthMap generation 
       this.kinect.enableRGB(); //Enable the camera image collection
+      
+      CLogger.Info("[CInputManager.Init()] Kinect- DepthWidth: " + this.kinect.depthWidth() + " DepthHeight: " + this.kinect.depthHeight());
 
       this.kinect.enableHand();
       this.kinect.startGesture(SimpleOpenNI.GESTURE_HAND_RAISE); //GESTURE_HAND_RAISE , GESTURE_WAVE
@@ -109,6 +112,10 @@ public class CInputManager {
     //    ArrayList<CTimePVector> tvecPosList = new ArrayList<CTimePVector>();
     PVector vecProjectivePos = new PVector();
     this.kinect.convertRealWorldToProjective(vecPos, vecProjectivePos);
+    
+    // Map 640X480 to sketch dimension
+    vecProjectivePos.x = map(vecProjectivePos.x, 0, this.kinect.depthWidth(), 0, width);
+    vecProjectivePos.y = map(vecProjectivePos.y, 0, this.kinect.depthHeight(), 0, height);
 
     CTimePVector tvecPos = new CTimePVector(millis(), vecProjectivePos);
     //    tvecPosList.add(tvecPos);
@@ -133,6 +140,11 @@ public class CInputManager {
     //keep Projection space coordinates instead of real world in tvecPathListMap 
     PVector vecProjectivePos = new PVector();
     this.kinect.convertRealWorldToProjective(pos, vecProjectivePos);
+    
+    // Map 640X480 to sketch dimension
+    vecProjectivePos.x = map(vecProjectivePos.x, 0, this.kinect.depthWidth(), 0, width);
+    vecProjectivePos.y = map(vecProjectivePos.y, 0, this.kinect.depthHeight(), 0, height);
+    
     CTimePVector tvecPos = new CTimePVector(millis(), vecProjectivePos);
     //    tvecPosList.add(0, tvecPos);
     kinectInputController.AddToList(0, tvecPos);

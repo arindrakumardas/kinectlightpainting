@@ -42,6 +42,12 @@ class CPageCapture extends CScene implements ITimerHandler {
     delay(500);
 
     fStartTime = millis()/1000;    //this is reseting the timer every time you go to PageCapture    
+    
+    //Create record label
+    CLabel recordingLabel = new CLabel("RECORDING");
+    recordingLabel.fFontSize = 10;
+    recordingLabel.SetPosition(width-75, height/7+30);
+    this.AddChild(recordingLabel);
 
     //Create canvas (create canvas after because the cursor can be drawn over the above ui compoment)
     this.canvas = new CCanvas();
@@ -53,9 +59,7 @@ class CPageCapture extends CScene implements ITimerHandler {
     return true;
   }
 
-  void Draw() {   
-    //@attn: irene
-    //This is the line that is essential, always call parent's function when you overwrite them
+  void Draw() {
     super.Draw();
 
     noStroke();
@@ -64,11 +68,7 @@ class CPageCapture extends CScene implements ITimerHandler {
     ellipse(width - 75, height/7, 30, 30); 
     this.fCaptureTime = millis()/1000 - this.fStartTime;
 
-    //Create record label
-    CLabel recordingLabel = new CLabel("RECORDING");
-    recordingLabel.fFontSize = 10;
-    recordingLabel.SetPosition(width-75, height/7+30);
-    this.AddChild(recordingLabel);
+
 
     if (this.fCaptureTime%2 == 1) {
       fill(0);

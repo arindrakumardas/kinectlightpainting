@@ -19,6 +19,7 @@ class CScene extends CLayer{
     
     CLogger.Debug("[CScene.Init()]");
     
+    //FIXME: show as last
     if(this.bSystemInfoOn){
       CSystemInfoLabel sysLabel = new CSystemInfoLabel();
       sysLabel.Init();

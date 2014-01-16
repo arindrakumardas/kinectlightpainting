@@ -22,13 +22,7 @@ import gifAnimation.*;
 
 
 CPageController g_pageController = null; //this is a singleton
-//IInputController g_inputController = null; //@TODO: remove from global and passing to classes if necessary
 CInputManager g_inputManager = null; //this is a singleton
-
-//@attn: vishnu
-//@from: gigi
-//light Source can be more than 1, it should not be global
-//CLightSource g_lightSource = null;
 ControlP5 g_cp5Controller = null;
 
 
@@ -48,7 +42,7 @@ boolean pause = false;
 PFont SegoeUIFont;
 
 void setup() {
-  size(640, 480); //size of the sketch
+  size(Configs.SKETCH_WIDTH, Configs.SKETCH_HEIGHT); //size of the sketch 
   background(0, 0, 0);
   
   //Sound

@@ -30,8 +30,13 @@ class CLayer extends CNode implements IDrawable{
   
   void AddChild(IDrawable child){
     this.arrChildren.add(child);
+ 
     
-//    CLogger.Debug("[CLayer.AddChils()] This: " + this + " Child: " + child);
+  }
+  
+  void AddChild(int iIndex, IDrawable child){
+    this.arrChildren.add(iIndex, child);
+ 
     
   }
   
