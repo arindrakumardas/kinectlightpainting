@@ -11,19 +11,11 @@
 
 import SimpleOpenNI.*;
 import java.util.*;
-import controlP5.*;
-import ddf.minim.spi.*;
-import ddf.minim.signals.*;
 import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.ugens.*;
-import ddf.minim.effects.*;
-import gifAnimation.*;
 
 
 CPageController g_pageController = null; //this is a singleton
 CInputManager g_inputManager = null; //this is a singleton
-ControlP5 g_cp5Controller = null;
 
 
 // For sound
@@ -33,10 +25,6 @@ AudioPlayer CameraBeepSound;
 AudioPlayer ClickSound;
 Minim minim;//audio context
 
-//For animation
-PImage[] animation;
-Gif HandCalibration;
-boolean pause = false;
 
 //SegoeUI Font 
 PFont SegoeUIFont;
@@ -53,8 +41,8 @@ void setup() {
   ClickSound = minim.loadFile("ClickSound.mp3");
 
   //Animation
-  HandCalibration = new Gif(this, "giphy.gif");
-  HandCalibration.loop();
+//  HandCalibration = new Gif(this, "giphy.gif");
+//  HandCalibration.loop();
 
   //Font
   
@@ -69,9 +57,6 @@ void setup() {
   g_inputManager = new CInputManager();
   g_inputManager.Init(this);
 
-
-    // Init CP5 GUI controller
-  g_cp5Controller = new ControlP5(this);
 
   // GO TO THE first default page 
   g_pageController.GotoPageIdle();
@@ -95,23 +80,6 @@ void mouseMoved() {
    //forward mouse event to InputManager
   g_inputManager.MouseMoved();
 }
-
-
-// -----------------------------------------------------------------
-// CP5 Control event callbacks (required by CP5)
-// -----------------------------------------------------------------
-public void controlEvent(ControlEvent theEvent) {
-  g_pageController.curPage.ControlEventHandler(theEvent);
-  //  n = 0;
-}
-
-//// function colorA will receive changes from 
-//// controller with name colorA
-//public void StartBtn(int theValue) {
-//  println("a button event from colorA: "+theValue);
-////  c1 = c2;
-////  c2 = color(0,160,100);
-//}
 
 
 // -----------------------------------------------------------------
