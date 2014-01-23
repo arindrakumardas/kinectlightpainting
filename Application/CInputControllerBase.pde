@@ -15,6 +15,10 @@ public abstract class CInputControllerBase {
 
   public float fCursorSize = 30;
 
+
+  PImage mouseCursor = loadImage("KinectCursor.png");
+
+
   CInputControllerBase() {
   }
 
@@ -56,8 +60,6 @@ public abstract class CInputControllerBase {
 
   public abstract float GetLastX();
   public abstract float GetLastY();
-
-  PImage mouseCursor = loadImage("KinectCursor.png");
 
   public void DrawCursor() { //this will draw a cursor on the input
 

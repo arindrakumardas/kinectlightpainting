@@ -16,14 +16,6 @@ public class CTimerLabel extends CLabel{
   protected boolean bIsAlive = false; //set this false when the timer is finished.
   
   
-  //below are not necessary now
-  float fCaptureTime;
-  float fStartTime;
-  //@deperacated
-  CTimerLabel (float fStartTime) {
-    this.fCaptureTime = this.fStartTime - millis()/1000;
-  }
-  
   CTimerLabel(ITimerHandler timerHandler){
     this.handler = timerHandler;
   }

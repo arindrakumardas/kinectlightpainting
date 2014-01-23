@@ -5,6 +5,8 @@
  * ----------------------------------------------------------------------------
  */
 public static class CLogger{
+  static int iLogLevel = 3;
+  
   public static void Debug(String strLogMessage){
     System.out.println("[debug]" + strLogMessage);
   }
